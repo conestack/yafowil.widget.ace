@@ -2,8 +2,8 @@ from yafowil.base import factory
 
 
 DOC_ACE_PYTHON = """
-Python Editor
--------------
+ACE in Python mode
+------------------
 
 .. code-block:: python
 
@@ -16,7 +16,7 @@ Python Editor
 """
 
 def ace_python():
-    part = factory(u'fieldset', name='yafowilwidgetacepython')
+    part = factory(u'fieldset', name='yafowil.widget.ace.python')
     value = "def foo():\n    return 'foo'"
     part['ace'] = factory('#field:ace', value=value, props={
         'label': 'Python source',
@@ -25,12 +25,12 @@ def ace_python():
         'mode': 'python'})
     return {'widget': part,
             'doc': DOC_ACE_PYTHON,
-            'title': 'Python Source'}
+            'title': 'Python'}
 
 
 DOC_ACE_JS = """
-Javascript Editor
------------------
+ACE in Javascript mode
+----------------------
 
 .. code-block:: python
 
@@ -44,7 +44,7 @@ Javascript Editor
 """
 
 def ace_js():
-    part = factory(u'fieldset', name='yafowilwidgetacejs')
+    part = factory(u'fieldset', name='yafowil.widget.ace.js')
     value = "var foo = function() {\n    return 'foo';\n};"
     part['ace'] = factory('#field:ace', value=value, props={
         'label': 'Javascript Source',
@@ -53,7 +53,7 @@ def ace_js():
         'mode': 'javascript'})
     return {'widget': part,
             'doc': DOC_ACE_JS,
-            'title': 'Javascript Source'}
+            'title': 'Javascript'}
 
 
 def get_example():
