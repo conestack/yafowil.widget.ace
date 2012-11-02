@@ -6,9 +6,13 @@ from yafowil.common import (
     generic_extractor,
     generic_required_extractor,
 )
-from yafowil.utils import cssid
+from yafowil.utils import (
+    cssid,
+    managedprops,
+)
 
 
+@managedprops('theme', 'mode')
 def ace_edit_renderer(widget, data):
     value = fetch_value(widget, data)
     if not value:
