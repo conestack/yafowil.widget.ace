@@ -28,32 +28,34 @@ if (typeof(window['yafowil']) == "undefined") yafowil = {};
             option: function(elem, name) {
                 var classes = elem.attr('class').split(' ');
                 var class_, i, base;
-                for (i = 0, i < classes.length; i++) {
+                for (i = 0; i < classes.length; i++) {
                     class_ = classes[i];
                     base = 'ace-option-' + name;
                     if (class_.indexOf(base) == 0) {
-                        alert(class_.substring(base.length, class_length));
-                        return class_.substring(base.length, class_length);
+                        return class_.substring(base.length + 1, class_.length);
                     }
                 }
             },
             
             binder: function(context) {
-                $('.ace_editor', context).each(function() {
+                $('.ace-editor', context).each(function() {
                     var elem = $(this);
                     var parent = elem.parent();
-                    elem.width(parent().width());
-                    var theme = yafowil.widget.ace.option(elem, 'theme');
-                    var mode = yafowil.widget.ace.option(elem, 'mode');
-                    alert(theme);
-                    alert(mode);
+                    var textarea = $('.ace-editor-value', parent);
+                    elem.width(parent.width());
+                    var theme = yafowil.ace.option(parent, 'theme');
+                    var mode = yafowil.ace.option(parent, 'mode');
                     var editor = ace.edit($(this).attr('id'));
                     editor.setTheme('ace/theme/' + theme);
                     editor.getSession().setMode('ace/mode/' + mode);
-                    editor.getSession().on('change', function(e) {
-                        // e.type, etc
-                        editor.getValue();
-                    });
+                    var bind_change = function(editor, textarea) {
+                        var e = editor;
+                        var ta = textarea;
+                        e.getSession().on('change', function(evt) {
+                            ta.val(e.getValue());
+                        });
+                    }
+                    bind_change(editor, textarea);
                 });
             }
         }

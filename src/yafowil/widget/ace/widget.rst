@@ -15,7 +15,7 @@ Render widget::
     >>> widget = factory('ace', 'acefield', props={'required': True})
     >>> pxml(widget())
     <div class="ace-editor-wrapper ace-option-theme-github ace-option-mode-python">
-      <textarea class="ace-editor-value" id="ace-acefield-value" name="acefield"/>
+      <textarea class="ace-editor-value" id="ace-acefield-value" name="acefield" style="display:none;"/>
       <div class="ace-editor" id="ace-acefield"/>
     </div>
     <BLANKLINE>
@@ -49,7 +49,7 @@ Widget extraction::
 
     >>> pxml(widget(data))
     <div class="ace-editor-wrapper ace-option-theme-github ace-option-mode-python">
-      <textarea class="ace-editor-value" id="ace-acefield-value" name="acefield">class Foo(object): pass</textarea>
+      <textarea class="ace-editor-value" id="ace-acefield-value" name="acefield" style="display:none;">class Foo(object): pass</textarea>
       <div class="ace-editor" id="ace-acefield">class Foo(object): pass</div>
     </div>
     <BLANKLINE>

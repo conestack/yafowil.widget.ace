@@ -17,6 +17,7 @@ def ace_edit_renderer(widget, data):
         'id': cssid(widget, 'ace', 'value'),
         'name': widget.dottedpath,
         'class': 'ace-editor-value',
+        'style': 'display:none;',
     }
     ta = data.tag('textarea', value, **ta_attrs)
     editor_attrs = {

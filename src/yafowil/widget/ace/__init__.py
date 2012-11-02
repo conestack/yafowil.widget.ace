@@ -14,7 +14,7 @@ js = [{
 }]
 css = [{
     'group': 'yafowil.widget.ace.common',
-    'resource': 'default/widget.css',
+    'resource': 'widget.css',
     'order': 20,
 }]
 
