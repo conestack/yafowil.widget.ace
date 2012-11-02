@@ -2,7 +2,7 @@
 History
 =======
 
-0.9dev
+1.0dev
 ------
 
-- made it work [rnix]
+- initial [rnix]

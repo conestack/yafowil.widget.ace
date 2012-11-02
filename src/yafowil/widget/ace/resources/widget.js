@@ -25,20 +25,31 @@ if (typeof(window['yafowil']) == "undefined") yafowil = {};
         
         ace: {
             
-            // tinymce options. extend or override as desired
-            options: {
-                theme: 'ace/theme/github',
-                mode: 'ace/mode/python'
+            option: function(elem, name) {
+                var classes = elem.attr('class').split(' ');
+                var class_, i, base;
+                for (i = 0, i < classes.length; i++) {
+                    class_ = classes[i];
+                    base = 'ace-option-' + name;
+                    if (class_.indexOf(base) == 0) {
+                        alert(class_.substring(base.length, class_length));
+                        return class_.substring(base.length, class_length);
+                    }
+                }
             },
             
             binder: function(context) {
                 $('.ace_editor', context).each(function() {
                     var elem = $(this);
-                    elem.width(elem.parent().width());
-                    var options = yafowil.ace.options;
+                    var parent = elem.parent();
+                    elem.width(parent().width());
+                    var theme = yafowil.widget.ace.option(elem, 'theme');
+                    var mode = yafowil.widget.ace.option(elem, 'mode');
+                    alert(theme);
+                    alert(mode);
                     var editor = ace.edit($(this).attr('id'));
-                    editor.setTheme(options.theme);
-                    editor.getSession().setMode(options.mode);
+                    editor.setTheme('ace/theme/' + theme);
+                    editor.getSession().setMode('ace/mode/' + mode);
                     editor.getSession().on('change', function(e) {
                         // e.type, etc
                         editor.getValue();
