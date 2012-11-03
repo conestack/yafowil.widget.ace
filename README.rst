@@ -2,6 +2,7 @@
 This is a **ACE editor widget** for for `YAFOWIL 
 <http://pypi.python.org/pypi/yafowil>`_ 
 
+- `ACE Editor <http://ace.ajax.org/#nav=about>`_
 - `Documentation <http://docs.yafowil.info/en/latest/blueprints.html#ace>`_
 - `DEMO - see it Live <http://demo.yafowil.info/++widget++yafowil.widget.ace/index.html>`_
 
