@@ -1,4 +1,5 @@
-src/yafowil.widget.ace.egg-info/
+*~
+*#*
 *.pyc
-*.pyo
-dist
+*.egg-info
+/dist/

@@ -5,4 +5,5 @@ History
 1.0
 ---
 
-- make it work [rnix]
+- make it work
+  [rnix]
