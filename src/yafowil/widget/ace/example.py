@@ -7,25 +7,36 @@ ACE in Python mode
 
 .. code-block:: python
 
-    value = "def foo():\\n    return 'foo'"
+    value = '''
+    def foo():
+        return 'foo'
+    '''
     ace = factory('#field:ace', value=value, props={
         'label': 'Python source',
         'required': 'Code is required',
         'theme': 'github',
-        'mode': 'python'})
+        'mode': 'python',
+    })
+"""
+
+ace_py_value = """\
+def foo():
+    return 'foo'
 """
 
 def ace_python():
     part = factory(u'fieldset', name='yafowil.widget.ace.python')
-    value = "def foo():\n    return 'foo'"
-    part['ace'] = factory('#field:ace', value=value, props={
+    part['ace'] = factory('#field:ace', value=ace_py_value, props={
         'label': 'Python source',
         'required': 'Code is required',
         'theme': 'github',
-        'mode': 'python'})
-    return {'widget': part,
-            'doc': DOC_ACE_PYTHON,
-            'title': 'Python'}
+        'mode': 'python',
+    })
+    return {
+        'widget': part,
+        'doc': DOC_ACE_PYTHON,
+        'title': 'Python',
+    }
 
 
 DOC_ACE_JS = """
@@ -34,26 +45,38 @@ ACE in Javascript mode
 
 .. code-block:: python
 
-    value = "var foo = function() {\\n    return 'foo';\\n};"
+    value = '''
+    var foo = function() {
+        return 'foo';
+    };
+    '''
     ace = factory('#field:ace', value=value, props={
         'label': 'Javascript Source',
         'required': 'Code is required',
         'theme': 'github',
-        'mode': 'javascript'})
+        'mode': 'javascript',
+    })
+"""
 
+ace_js_value = """\
+var foo = function() {
+    return 'foo';
+};
 """
 
 def ace_js():
     part = factory(u'fieldset', name='yafowil.widget.ace.js')
-    value = "var foo = function() {\n    return 'foo';\n};"
-    part['ace'] = factory('#field:ace', value=value, props={
+    part['ace'] = factory('#field:ace', value=ace_js_value, props={
         'label': 'Javascript Source',
         'required': 'Code is required',
         'theme': 'github',
-        'mode': 'javascript'})
-    return {'widget': part,
-            'doc': DOC_ACE_JS,
-            'title': 'Javascript'}
+        'mode': 'javascript',
+    })
+    return {
+        'widget': part,
+        'doc': DOC_ACE_JS,
+        'title': 'Javascript',
+    }
 
 
 def get_example():
