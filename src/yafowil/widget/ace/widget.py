@@ -1,15 +1,9 @@
-from yafowil.base import (
-    factory,
-    fetch_value,
-)
-from yafowil.common import (
-    generic_extractor,
-    generic_required_extractor,
-)
-from yafowil.utils import (
-    cssid,
-    managedprops,
-)
+from yafowil.base import factory
+from yafowil.base import fetch_value
+from yafowil.common import generic_extractor
+from yafowil.common import generic_required_extractor
+from yafowil.utils import cssid
+from yafowil.utils import managedprops
 
 
 @managedprops('theme', 'mode')
