@@ -1,29 +1,66 @@
-from interlude import interact
-from pprint import pprint
-from yafowil.tests import pxml
-import doctest
+from node.tests import NodeTestCase
+from node.utils import UNSET
+from yafowil.base import ExtractionError
+from yafowil.base import factory
+from yafowil.tests import fxml
 import unittest
+import yafowil.widget.ace
+import yafowil.loader
 
 
-optionflags = doctest.NORMALIZE_WHITESPACE | \
-              doctest.ELLIPSIS | \
-              doctest.REPORT_ONLY_FIRST_FAILURE
+class TestACEWidget(NodeTestCase):
 
-TESTFILES = [
-    'widget.rst',
-]
+    def test_edit_renderer(self):
+        widget = factory('ace', 'acefield', props={'required': True})
+        self.check_output("""
+        <div class="ace-editor-wrapper ace-option-theme-github ace-option-mode-python">
+          <textarea class="ace-editor-value"
+                    id="ace-acefield-value"
+                    name="acefield"
+                    style="display:none;"/>
+          <div class="ace-editor" id="ace-acefield"/>
+        </div>
+        """, fxml(widget()))
 
-def test_suite():
-    return unittest.TestSuite([
-        doctest.DocFileSuite(
-            file, 
-            optionflags=optionflags,
-            globs={'interact': interact,
-                   'pprint': pprint,
-                   'pxml': pxml},
-        ) for file in TESTFILES
-    ])
+    def test_display_renderer(self):
+        value = 'class Foo(object): pass'
+        widget = factory('ace', 'acefield', value=value, mode='display')
+        err = self.expect_error(
+            NotImplementedError,
+            widget
+        )
+        msg = '``yafowil.widget.ace`` does not support display mode yet'
+        self.assertEqual(str(err), msg)
+
+    def test_extraction(self):
+        widget = factory('ace', 'acefield', props={'required': True})
+        request = {'acefield': ''}
+        data = widget.extract(request)
+        self.assertEqual(data.name, 'acefield')
+        self.assertEqual(data.value, UNSET)
+        self.assertEqual(data.extracted, '')
+        self.assertEqual(data.errors, [
+            ExtractionError('Mandatory field was empty')
+        ])
+
+        request = {'acefield': 'class Foo(object): pass'}
+        data = widget.extract(request)
+        self.assertEqual(data.name, 'acefield')
+        self.assertEqual(data.value, UNSET)
+        self.assertEqual(data.extracted, 'class Foo(object): pass')
+        self.assertEqual(data.errors, [])
+
+        self.check_output("""
+        <div class="ace-editor-wrapper ace-option-theme-github ace-option-mode-python">
+         <textarea class="ace-editor-value"
+                   id="ace-acefield-value"
+                   name="acefield"
+                   style="display:none;">class Foo(object): pass</textarea>
+         <div class="ace-editor"
+              id="ace-acefield">class Foo(object): pass</div>
+        </div>
+        """, fxml(widget(data)))
 
 
 if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')                 #pragma NO COVER
+    unittest.main()                                          # pragma: no cover
