@@ -22,6 +22,6 @@ css = [{
 
 @entry_point(order=10)
 def register():
-    import widget
+    from yafowil.widget.ace import widget
     factory.register_theme('default', 'yafowil.widget.ace',
                            resourcedir, js=js, css=css)
