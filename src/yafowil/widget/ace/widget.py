@@ -33,18 +33,23 @@ def ace_edit_renderer(widget, data):
 
 
 def ace_display_renderer(widget, data):
-    raise NotImplementedError(u"``yafowil.widget.ace`` does not support "
-                              u"display mode yet")
+    raise NotImplementedError(
+        u"``yafowil.widget.ace`` does not support display mode yet"
+    )
 
 
 factory.register(
     'ace',
-    extractors=[generic_extractor, generic_required_extractor],
+    extractors=[
+        generic_extractor,
+        generic_required_extractor
+    ],
     edit_renderers=[ace_edit_renderer],
-    display_renderers=[ace_display_renderer])
+    display_renderers=[ace_display_renderer]
+)
 
-factory.doc['blueprint']['ace'] = \
-"""Add-on blueprint `yafowil.widget.ace 
+factory.doc['blueprint']['ace'] = """\
+Add-on blueprint `yafowil.widget.ace
 <http://github.com/bluedynamics/yafowil.widget.ace/>`_ .
 """
 
@@ -53,11 +58,11 @@ factory.defaults['ace.default'] = ''
 factory.defaults['ace.class'] = 'ace_editor'
 
 factory.defaults['ace.theme'] = 'github'
-factory.doc['props']['ace.theme'] = \
-"""ACE Theme.
+factory.doc['props']['ace.theme'] = """\
+ACE Theme.
 """
 
 factory.defaults['ace.mode'] = 'python'
-factory.doc['props']['ace.mode'] = \
-"""ACE Mode.
+factory.doc['props']['ace.mode'] = """\
+ACE Mode.
 """

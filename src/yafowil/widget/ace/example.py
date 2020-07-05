@@ -24,6 +24,7 @@ def foo():
     return 'foo'
 """
 
+
 def ace_python():
     part = factory(u'fieldset', name='yafowil.widget.ace.python')
     part['ace'] = factory('#field:ace', value=ace_py_value, props={
@@ -63,6 +64,7 @@ var foo = function() {
     return 'foo';
 };
 """
+
 
 def ace_js():
     part = factory(u'fieldset', name='yafowil.widget.ace.js')

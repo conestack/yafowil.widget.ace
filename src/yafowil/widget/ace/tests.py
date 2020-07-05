@@ -2,10 +2,10 @@ from node.utils import UNSET
 from yafowil.base import ExtractionError
 from yafowil.base import factory
 from yafowil.compat import IS_PY2
-from yafowil.tests import YafowilTestCase
 from yafowil.tests import fxml
+from yafowil.tests import YafowilTestCase
 import unittest
-import yafowil.loader
+import yafowil.loader  # noqa
 
 
 if not IS_PY2:
@@ -72,4 +72,4 @@ class TestACEWidget(YafowilTestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()                                          # pragma: no cover
+    unittest.main()
