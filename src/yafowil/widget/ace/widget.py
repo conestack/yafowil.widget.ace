@@ -50,7 +50,7 @@ factory.register(
 
 factory.doc['blueprint']['ace'] = """\
 Add-on blueprint `yafowil.widget.ace
-<http://github.com/bluedynamics/yafowil.widget.ace/>`_ .
+<http://github.com/conestack/yafowil.widget.ace/>`_ .
 """
 
 factory.defaults['ace.default'] = ''
