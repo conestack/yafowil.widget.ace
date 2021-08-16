@@ -19,9 +19,10 @@ npm --save-dev install \
     karma-module-resolver-preprocessor \
     rollup \
     rollup-plugin-cleanup \
-    rollup-plugin-terser \
-    https://github.com/jquery/jquery#main
+    rollup-plugin-terser
+
+npm --no-save install https://github.com/jquery/jquery#main
 
 python3 -m venv .
 ./bin/pip install wheel
-./bin/pip install -e .[docs]
+./bin/pip install -e .[test]
