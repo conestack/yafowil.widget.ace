@@ -3,3 +3,6 @@
 *.pyc
 *.egg-info
 /dist/
+/karma/
+/node_modules/
+/package-lock.json
