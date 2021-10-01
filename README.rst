@@ -1,9 +1,12 @@
 This is a **ACE editor widget** for for `YAFOWIL 
 <http://pypi.python.org/pypi/yafowil>`_ 
 
-- `ACE Editor <http://ace.ajax.org/#nav=about>`_
+- `ACE Editor <https://ace.c9.io>`_
 - `Documentation <http://docs.yafowil.info/en/latest/blueprints.html#ace>`_
 - `DEMO - see it Live <http://demo.yafowil.info/++widget++yafowil.widget.ace/index.html>`_
+
+Current included version of ACE editor is
+`v1.4.13 <https://github.com/ajaxorg/ace-builds/releases/tag/v1.4.13>`_
 
 
 Source Code

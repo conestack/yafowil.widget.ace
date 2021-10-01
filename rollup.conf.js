@@ -17,7 +17,7 @@ export default args => {
             cleanup()
         ],
         output: [{
-            file: `${out_dir}/yafowil.widget.ace.js`,
+            file: `${out_dir}/widget.js`,
             format: 'iife',
             outro: outro,
             globals: {
@@ -35,7 +35,7 @@ export default args => {
     };
     if (args.configDebug !== true) {
         conf.output.push({
-            file: `${out_dir}/yafowil.widget.ace.min.js`,
+            file: `${out_dir}/widget.min.js`,
             format: 'iife',
             plugins: [
                 terser()

@@ -1,64 +1,59 @@
-/* 
- * yafowil ace editor widget
- * 
- * Requires: tinymce
- * Optional: bdajax
- */
+(function (exports, $, ace) {
+    'use strict';
 
-if (typeof(window['yafowil']) == "undefined") yafowil = {};
-
-(function($) {
-
-    $(document).ready(function() {
-        // initial binding
-        yafowil.ace.binder();
-        
-        // add after ajax binding if bdajax present
-        if (typeof(window['bdajax']) != "undefined") {
-            $.extend(bdajax.binders, {
-                ace_binder: yafowil.ace.binder
+    class AceWidget {
+        static initialize(context) {
+            $('.ace-editor', context).each(function() {
+                new AceWidget($(this));
             });
         }
-    });
-    
-    $.extend(yafowil, {
-        
-        ace: {
-            
-            option: function(elem, name) {
-                var classes = elem.attr('class').split(' ');
-                var class_, i, base;
-                for (i = 0; i < classes.length; i++) {
-                    class_ = classes[i];
-                    base = 'ace-option-' + name;
-                    if (class_.indexOf(base) == 0) {
-                        return class_.substring(base.length + 1, class_.length);
-                    }
+        constructor(elem) {
+            this.elem = elem;
+            let cnt = this.container = elem.parent();
+            this.textarea = $('.ace-editor-value', cnt);
+            elem.width(cnt.width());
+            let ed = this.editor = ace.edit(elem.attr('id'));
+            ed.setTheme(`ace/theme/${this.ace_option('theme')}`);
+            let sess = ed.getSession();
+            sess.setMode(`ace/mode/${this.ace_option('mode')}`);
+            sess.on('change', this.change_handle.bind(this));
+        }
+        ace_option(name) {
+            let classes = this.container.attr('class').split(' '),
+                class_, i, base;
+            for (i = 0; i < classes.length; i++) {
+                class_ = classes[i];
+                base = 'ace-option-' + name;
+                if (class_.indexOf(base) == 0) {
+                    return class_.substring(base.length + 1, class_.length);
                 }
-            },
-            
-            binder: function(context) {
-                $('.ace-editor', context).each(function() {
-                    var elem = $(this);
-                    var parent = elem.parent();
-                    var textarea = $('.ace-editor-value', parent);
-                    elem.width(parent.width());
-                    var theme = yafowil.ace.option(parent, 'theme');
-                    var mode = yafowil.ace.option(parent, 'mode');
-                    var editor = ace.edit($(this).attr('id'));
-                    editor.setTheme('ace/theme/' + theme);
-                    editor.getSession().setMode('ace/mode/' + mode);
-                    var bind_change = function(editor, textarea) {
-                        var e = editor;
-                        var ta = textarea;
-                        e.getSession().on('change', function(evt) {
-                            ta.val(e.getValue());
-                        });
-                    }
-                    bind_change(editor, textarea);
-                });
             }
+        }
+        change_handle(evt) {
+            this.textarea.val(this.editor.getValue());
+        }
+    }
+
+    $(function() {
+        if (window.ts !== undefined) {
+            ts.ajax.register(AceWidget.initialize, true);
+        } else {
+            AceWidget.initialize();
         }
     });
 
-})(jQuery);
+    exports.AceWidget = AceWidget;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+
+    if (window.yafowil === undefined) {
+        window.yafowil = {};
+    }
+    window.yafowil.ace = exports;
+
+
+    return exports;
+
+})({}, jQuery, ace);
+//# sourceMappingURL=yafowil.widget.ace.js.map

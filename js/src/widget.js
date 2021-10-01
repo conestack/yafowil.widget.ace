@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import ace from 'ace';
 
 export class AceWidget {
 
