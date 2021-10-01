@@ -9,9 +9,8 @@
         }
         constructor(elem) {
             this.elem = elem;
-            let cnt = this.container = elem.parent();
-            this.textarea = $('.ace-editor-value', cnt);
-            elem.width(cnt.width());
+            let container = this.container = elem.parent();
+            this.textarea = $('.ace-editor-value', container);
             let ed = this.editor = ace.edit(elem.attr('id'));
             ed.setTheme(`ace/theme/${this.ace_option('theme')}`);
             let sess = ed.getSession();
