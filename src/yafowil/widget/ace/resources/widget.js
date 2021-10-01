@@ -56,4 +56,4 @@
     return exports;
 
 })({}, jQuery, ace);
-//# sourceMappingURL=yafowil.widget.ace.js.map
+//# sourceMappingURL=widget.js.map
