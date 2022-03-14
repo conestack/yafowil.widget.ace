@@ -17,6 +17,7 @@ export default args => {
             cleanup()
         ],
         output: [{
+            name: 'yafowil_ace',
             file: `${out_dir}/widget.js`,
             format: 'iife',
             outro: outro,
@@ -24,9 +25,7 @@ export default args => {
                 jquery: 'jQuery',
                 ace: 'ace'
             },
-            interop: 'default',
-            sourcemap: true,
-            sourcemapExcludeSources: true
+            interop: 'default'
         }],
         external: [
             'jquery',
@@ -35,6 +34,7 @@ export default args => {
     };
     if (args.configDebug !== true) {
         conf.output.push({
+            name: 'yafowil_ace',
             file: `${out_dir}/widget.min.js`,
             format: 'iife',
             plugins: [
@@ -45,9 +45,7 @@ export default args => {
                 jquery: 'jQuery',
                 ace: 'ace'
             },
-            interop: 'default',
-            sourcemap: true,
-            sourcemapExcludeSources: true
+            interop: 'default'
         });
     }
     return conf;

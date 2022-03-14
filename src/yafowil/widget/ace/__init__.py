@@ -23,5 +23,10 @@ css = [{
 @entry_point(order=10)
 def register():
     from yafowil.widget.ace import widget  # noqa
-    factory.register_theme('default', 'yafowil.widget.ace',
-                           resourcedir, js=js, css=css)
+    factory.register_theme(
+        'default',
+        'yafowil.widget.ace',
+        resourcedir,
+        js=js,
+        css=css
+    )

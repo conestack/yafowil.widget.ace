@@ -1,4 +1,4 @@
-(function (exports, $, ace) {
+var yafowil_ace = (function (exports, $, ace) {
     'use strict';
 
     class AceWidget {
@@ -55,4 +55,3 @@
     return exports;
 
 })({}, jQuery, ace);
-//# sourceMappingURL=widget.js.map
