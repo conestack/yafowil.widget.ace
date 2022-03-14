@@ -1,10 +1,11 @@
-
+*#*
 *.egg-info
 *.pyc
-*#*
 *~
+/.coverage
 /bin/
 /dist/
+/htmlcov/
 /js/karma/
 /lib/
 /lib64
