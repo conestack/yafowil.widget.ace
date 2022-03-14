@@ -1,10 +1,14 @@
 Changes
 =======
 
-1.3 (unreleased)
+2.0 (unreleased)
 ----------------
 
-- No changes yet.
+- Update ACE Editor to v1.4.13.
+  [rnix]
+
+- Rewrite JavaScript using ES6.
+  [rnix]
 
 
 1.2 (2018-07-16)
