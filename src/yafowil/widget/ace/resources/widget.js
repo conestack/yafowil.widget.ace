@@ -1,4 +1,4 @@
-var yafowil_ace = (function (exports, $, ace) {
+var yafowil_ace = (function (exports, $) {
     'use strict';
 
     class AceWidget {
@@ -8,6 +8,7 @@ var yafowil_ace = (function (exports, $, ace) {
             });
         }
         constructor(elem) {
+            elem.data('ace_widget', this);
             this.elem = elem;
             let container = this.container = elem.parent();
             this.textarea = $('.ace-editor-value', container);
@@ -54,4 +55,4 @@ var yafowil_ace = (function (exports, $, ace) {
 
     return exports;
 
-})({}, jQuery, ace);
+})({}, jQuery);
