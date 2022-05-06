@@ -35,8 +35,8 @@ jobs:
         run: |
           pip install wheel
           pip install coverage
-          pip install -e .
-          pip install https://github.com/conestack/yafowil/archive/master.zip
+          pip install https://github.com/conestack/yafowil/archive/master.zip[test]
+          pip install -e .[test]
       - name: Run tests
         run: |
           python --version
