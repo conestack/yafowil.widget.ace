@@ -35,6 +35,8 @@ jobs:
         run: |
           pip install wheel
           pip install coverage
+          pip install lxml
+          pip install zope.testrunner
           pip install https://github.com/conestack/yafowil/archive/master.zip
           pip install -e .[test]
       - name: Run tests
