@@ -5,6 +5,8 @@ DOC_ACE_PYTHON = """
 ACE in Python mode
 ------------------
 
+Set the 'mode' option to 'python' to create a Python Ace widget.
+
 .. code-block:: python
 
     value = '''
@@ -44,6 +46,8 @@ DOC_ACE_JS = """
 ACE in Javascript mode
 ----------------------
 
+Set the 'mode' option to 'javascript' to create a JavaScript Ace widget.
+
 .. code-block:: python
 
     value = '''
@@ -81,5 +85,52 @@ def ace_js():
     }
 
 
+DOC_ACE_THEMES = """
+Themes
+------
+
+Customize syntax highlighting and appearance with one of the available ACE themes.
+
+.. code-block:: python
+
+    value = '''
+    function foo(items) {
+        for (var i=0; i<=items.length; i++) {
+            alert(items[i]);
+        }
+    }
+    '''
+    ace = factory('#field:ace', value=value, props={
+        'label': 'Cobalt Theme',
+        'required': 'Code is required',
+        'theme': 'cobalt',
+        'mode': 'javascript'
+    })
+"""
+
+ace_theme_value = """\
+function foo(items) {
+    for (var i=0; i<=items.length; i++) {
+        alert(items[i]);
+    }
+}
+"""
+
+
+def ace_themes():
+    part = factory(u'fieldset', name='yafowil.widget.ace.themes')
+    part['ace'] = factory('#field:ace', value=ace_theme_value, props={
+        'label': 'Cobalt Theme',
+        'required': 'Code is required',
+        'theme': 'cobalt',
+        'mode': 'javascript'
+    })
+    return {
+        'widget': part,
+        'doc': DOC_ACE_THEMES,
+        'title': 'Themes',
+    }
+
+
 def get_example():
-    return [ace_python(), ace_js()]
+    return [ace_python(), ace_js(), ace_themes()]

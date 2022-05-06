@@ -6,6 +6,7 @@
 /bin/
 /dist/
 /htmlcov/
+/include/
 /js/karma/
 /lib/
 /lib64

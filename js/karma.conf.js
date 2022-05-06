@@ -13,6 +13,9 @@ module.exports = function(config) {
             type: 'module',
             included: false
         }, {
+            pattern: '../../src/yafowil/widget/ace/resources/ace/ace.js',
+            included: true
+        }, {
             pattern: '../src/*.js',
             type: 'module',
             included: false

@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import ace from 'ace';
 
 export class AceWidget {
 
@@ -10,6 +9,7 @@ export class AceWidget {
     }
 
     constructor(elem) {
+        elem.data('ace_widget', this);
         this.elem = elem;
         let container = this.container = elem.parent();
         this.textarea = $('.ace-editor-value', container);
