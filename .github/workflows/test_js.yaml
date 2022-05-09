@@ -1,0 +1,49 @@
+# name: 'Hello World'
+# description: 'Greet someone and record the time'
+# inputs:
+#   who-to-greet:  # id of input
+#     description: 'Who to greet'
+#     required: true
+#     default: 'World'
+# outputs:
+#   time: # id of output
+#     description: 'The time we greeted you'
+# runs:
+#   using: 'node16'
+#   main: 'index.js'
+
+
+name: JS Test ace
+
+on:
+  push:
+    # paths:
+    # - '**.js'
+
+jobs:
+  test:
+    name: TEST
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # - name: Set up JS
+      #   uses: actions/setup-python@v2
+
+      # - name: Install
+      #   run: |
+      #     pip install wheel
+      #     pip install coverage
+      #     pip install lxml
+      #     pip install zope.testrunner
+      #     pip install https://github.com/conestack/yafowil/archive/master.zip
+      #     pip install -e .[test]
+      - name: Run tests
+        run: |
+          node_modules/karma/bin/karma start js/karma.conf.js
+      # - name: Run coverage
+      #   run: |
+      #     coverage run --source=src/yafowil/widget/ace --omit=src/yafowil/widget/ace/example.py -m yafowil.widget.ace.tests
+      #     coverage report --fail-under=99
