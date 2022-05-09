@@ -1,13 +1,3 @@
-# name: 'Hello World'
-# description: 'Greet someone and record the time'
-# inputs:
-#   who-to-greet:  # id of input
-#     description: 'Who to greet'
-#     required: true
-#     default: 'World'
-# outputs:
-#   time: # id of output
-#     description: 'The time we greeted you'
 # runs:
 #   using: 'node16'
 #   main: 'index.js'
@@ -46,7 +36,3 @@ jobs:
       - name: Run tests
         run: |
           node_modules/karma/bin/karma start js/karma.conf.js
-      # - name: Run coverage
-      #   run: |
-      #     coverage run --source=src/yafowil/widget/ace --omit=src/yafowil/widget/ace/example.py -m yafowil.widget.ace.tests
-      #     coverage report --fail-under=99
