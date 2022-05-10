@@ -1,26 +1,18 @@
-# runs:
-#   using: 'node16'
-#   main: 'index.js'
-
-
 name: JS Test ace
 
 on:
   push:
-    # paths:
-    # - '**.js'
+    paths:
+    - '**.js'
 
 jobs:
   test:
-    name: TEST
+    name: TEST ACE
 
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-
-      # - name: Set up JS
-      #   uses: actions/setup-python@v2
 
       - name: Install
         run: |
@@ -36,3 +28,7 @@ jobs:
       - name: Run tests
         run: |
           node_modules/karma/bin/karma start js/karma.conf.js
+
+      - name: Run coverage
+        run: |
+          npm run karma-test:coverage

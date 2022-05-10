@@ -9,8 +9,6 @@ QUnit.test('test', assert => {
     AceWidget.initialize();
     let widget = elem.data('ace_widget');
 
-    assert.ok(false);
-
     assert.ok(widget.textarea.is('textarea.ace-editor-value'));
     assert.strictEqual(widget.ace_option('theme'), 'github');
     assert.strictEqual(widget.ace_option('mode'), 'python');
