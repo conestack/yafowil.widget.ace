@@ -22,7 +22,13 @@ class TestACEWidget(YafowilTestCase):
     def test_edit_renderer(self):
         widget = factory('ace', 'acefield', props={'required': True})
         self.check_output("""
-        <div class="ace-editor-wrapper ace-option-theme-github ace-option-mode-python">
+        <div class="ace-editor-wrapper"
+             data-yafowil-ace="{&quot;basepath&quot;:
+                                &quot;&quot;,
+                                &quot;theme&quot;:
+                                &quot;github&quot;,
+                                &quot;mode&quot;:
+                                &quot;python&quot;}">
           <textarea class="ace-editor-value"
                     id="ace-acefield-value"
                     name="acefield"
@@ -60,13 +66,19 @@ class TestACEWidget(YafowilTestCase):
         self.assertEqual(data.errors, [])
 
         self.check_output("""
-        <div class="ace-editor-wrapper ace-option-theme-github ace-option-mode-python">
-         <textarea class="ace-editor-value"
-                   id="ace-acefield-value"
-                   name="acefield"
-                   style="display:none;">class Foo(object): pass</textarea>
-         <div class="ace-editor"
-              id="ace-acefield">class Foo(object): pass</div>
+        <div class="ace-editor-wrapper"
+             data-yafowil-ace="{&quot;basepath&quot;:
+                                &quot;&quot;,
+                                &quot;theme&quot;:
+                                &quot;github&quot;,
+                                &quot;mode&quot;:
+                                &quot;python&quot;}">
+          <textarea class="ace-editor-value"
+                    id="ace-acefield-value"
+                    name="acefield"
+                    style="display:none;">class Foo(object): pass</textarea>
+          <div class="ace-editor"
+               id="ace-acefield">class Foo(object): pass</div>
         </div>
         """, fxml(widget(data)))
 

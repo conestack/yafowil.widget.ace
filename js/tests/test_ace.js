@@ -1,15 +1,29 @@
 import {AceWidget} from '../src/widget.js';
 
 QUnit.test('test', assert => {
-    let wrapper_elem = $('<div class="ace-editor-wrapper ace-option-theme-github ace-option-mode-python" />');
-    let textarea = $('<textarea class="ace-editor-value" />').appendTo(wrapper_elem);
-    let elem = $('<div class="ace-editor" />').appendTo(wrapper_elem);
-    wrapper_elem.appendTo($('body'));
+    let wrapper = $('<div />')
+        .addClass('ace-editor-wrapper')
+        .data('yafowil-ace', {
+            'basepath': '',
+            'theme': 'github',
+            'mode': 'python'
+        })
+        .appendTo($('body'));
+    let textarea = $('<textarea />')
+        .addClass('ace-editor-value')
+        .appendTo(wrapper);
+    let ed_elem = $('<div />')
+        .addClass('ace-editor')
+        .appendTo(wrapper);
 
     AceWidget.initialize();
-    let widget = elem.data('ace_widget');
-
-    assert.ok(widget.textarea.is('textarea.ace-editor-value'));
-    assert.strictEqual(widget.ace_option('theme'), 'github');
-    assert.strictEqual(widget.ace_option('mode'), 'python');
+    let widget = wrapper.data('yafowil-ace');
+    assert.ok(widget instanceof AceWidget);
+    assert.ok(widget.ed_elem.is(ed_elem));
+    assert.ok(widget.textarea.is(textarea));
+    assert.deepEqual(widget.opts, {
+        'basepath': '',
+        'theme': 'github',
+        'mode': 'python'
+    });
 });

@@ -2,11 +2,13 @@ from yafowil.base import factory
 from yafowil.base import fetch_value
 from yafowil.common import generic_extractor
 from yafowil.common import generic_required_extractor
+from yafowil.utils import as_data_attrs
+from yafowil.utils import attr_value
 from yafowil.utils import cssid
 from yafowil.utils import managedprops
 
 
-@managedprops('theme', 'mode')
+@managedprops('basepath', 'theme', 'mode')
 def ace_edit_renderer(widget, data):
     value = fetch_value(widget, data)
     if not value:
@@ -23,12 +25,16 @@ def ace_edit_renderer(widget, data):
         'class': 'ace-editor',
     }
     editor = data.tag('div', value, **editor_attrs)
-    wrapper_css = [
-        'ace-editor-wrapper',
-        'ace-option-theme-%s' % widget.attrs['theme'],
-        'ace-option-mode-%s' % widget.attrs['mode'],
-    ]
-    wrapper_attrs = {'class': ' '.join(wrapper_css)}
+    wrapper_attrs = {
+        'class': 'ace-editor-wrapper',
+    }
+    wrapper_attrs.update(as_data_attrs({
+        'yafowil-ace': {
+            'basepath': attr_value('basepath', widget, data),
+            'theme': attr_value('theme', widget, data),
+            'mode': attr_value('mode', widget, data)
+        }
+    }))
     return data.tag('div', ta + editor, **wrapper_attrs)
 
 
@@ -56,6 +62,11 @@ Add-on blueprint `yafowil.widget.ace
 factory.defaults['ace.default'] = ''
 
 factory.defaults['ace.class'] = 'ace_editor'
+
+factory.defaults['ace.basepath'] = ''
+factory.doc['props']['ace.basepath'] = """\
+ACE Basepath for resources.
+"""
 
 factory.defaults['ace.theme'] = 'github'
 factory.doc['props']['ace.theme'] = """\
