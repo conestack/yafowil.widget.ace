@@ -31,6 +31,8 @@ var yafowil_ace = (function (exports, $) {
     $(function() {
         if (window.ts !== undefined) {
             ts.ajax.register(AceWidget.initialize, true);
+        } else if (window.bdajax !== undefined) {
+            bdajax.register(AceWidget.initialize, true);
         } else {
             AceWidget.initialize();
         }
@@ -41,9 +43,7 @@ var yafowil_ace = (function (exports, $) {
     Object.defineProperty(exports, '__esModule', { value: true });
 
 
-    if (window.yafowil === undefined) {
-        window.yafowil = {};
-    }
+    window.yafowil = window.yafowil || {};
     window.yafowil.ace = exports;
 
 
