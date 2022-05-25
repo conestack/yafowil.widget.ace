@@ -13,7 +13,10 @@ resources_dir = os.path.join(os.path.dirname(__file__), 'resources')
 
 # webresource ################################################################
 
-scripts = wr.ResourceGroup(name='yafowil-ace-scripts')
+scripts = wr.ResourceGroup(
+    name='yafowil-ace-scripts',
+    path='yafowil.widget.ace'
+)
 scripts.add(wr.ScriptResource(
     name='ace-js',
     directory=os.path.join(resources_dir, 'ace'),
@@ -30,7 +33,10 @@ scripts.add(wr.ScriptResource(
     compressed='widget.min.js'
 ))
 
-styles = wr.ResourceGroup(name='yafowil-ace-styles')
+styles = wr.ResourceGroup(
+    name='yafowil-ace-styles',
+    path='yafowil.widget.ace'
+)
 styles.add(wr.StyleResource(
     name='yafowil-ace-css',
     directory=resources_dir,
