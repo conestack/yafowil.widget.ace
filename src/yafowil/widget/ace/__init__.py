@@ -13,33 +13,29 @@ resources_dir = os.path.join(os.path.dirname(__file__), 'resources')
 
 # webresource ################################################################
 
-scripts = wr.ResourceGroup(name='scripts')
+scripts = wr.ResourceGroup(name='yafowil-ace-scripts')
 scripts.add(wr.ScriptResource(
     name='ace-js',
-    # actually it not depends on jquery, but yafowil-ace-js does
-    # think about multiple depends values in webresource
-    depends='jquery-js',
     directory=os.path.join(resources_dir, 'ace'),
     resource='ace.js'
 ))
 scripts.add(wr.ScriptResource(
     name='yafowil-ace-js',
-    depends='ace-js',
+    depends=[
+        'jquery-js',
+        'ace-js'
+    ],
     directory=resources_dir,
     resource='widget.js',
     compressed='widget.min.js'
 ))
 
-styles = wr.ResourceGroup(name='styles')
+styles = wr.ResourceGroup(name='yafowil-ace-styles')
 styles.add(wr.StyleResource(
     name='yafowil-ace-css',
     directory=resources_dir,
     resource='widget.css'
 ))
-
-resources = wr.ResourceGroup(name='ace-resources')
-resources.add(scripts)
-resources.add(styles)
 
 # B/C resources ##############################################################
 
@@ -70,5 +66,7 @@ def register():
     # Default
     factory.register_theme(
         'default', 'yafowil.widget.ace', resources_dir,
-        js=js, css=css, resources=resources
+        js=js, css=css
     )
+    factory.register_scripts('default', 'yafowil.widget.ace', scripts)
+    factory.register_styles('default', 'yafowil.widget.ace', styles)
