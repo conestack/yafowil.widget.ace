@@ -21,7 +21,7 @@ class TestACEWidget(YafowilTestCase):
 
     def test_edit_renderer(self):
         widget = factory('ace', 'acefield', props={'required': True})
-        self.check_output("""
+        self.checkOutput("""
         <div class="ace-editor-wrapper"
              data-yafowil-ace="{&quot;basepath&quot;:
                                 &quot;&quot;,
@@ -40,12 +40,10 @@ class TestACEWidget(YafowilTestCase):
     def test_display_renderer(self):
         value = 'class Foo(object): pass'
         widget = factory('ace', 'acefield', value=value, mode='display')
-        err = self.expect_error(
-            NotImplementedError,
-            widget
-        )
+        with self.assertRaises(NotImplementedError) as arc:
+            widget()
         msg = '``yafowil.widget.ace`` does not support display mode yet'
-        self.assertEqual(str(err), msg)
+        self.assertEqual(str(arc.exception), msg)
 
     def test_extraction(self):
         widget = factory('ace', 'acefield', props={'required': True})
@@ -65,7 +63,7 @@ class TestACEWidget(YafowilTestCase):
         self.assertEqual(data.extracted, 'class Foo(object): pass')
         self.assertEqual(data.errors, [])
 
-        self.check_output("""
+        self.checkOutput("""
         <div class="ace-editor-wrapper"
              data-yafowil-ace="{&quot;basepath&quot;:
                                 &quot;&quot;,
