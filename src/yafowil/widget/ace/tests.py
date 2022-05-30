@@ -90,6 +90,7 @@ class TestACEWidget(YafowilTestCase):
         factory.theme = 'default'
         resources = factory.get_resources('yafowil.widget.ace')
         self.assertTrue(resources.directory.endswith(np('/ace/resources')))
+        self.assertEqual(resources.name, 'yafowil.widget.ace')
         self.assertEqual(resources.path, 'yafowil-ace')
 
         scripts = resources.scripts
