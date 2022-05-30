@@ -4,20 +4,25 @@ from yafowil.base import factory
 from yafowil.compat import IS_PY2
 from yafowil.tests import fxml
 from yafowil.tests import YafowilTestCase
+import os
 import unittest
-import yafowil.loader  # noqa
 
 
 if not IS_PY2:
     from importlib import reload
 
 
+def np(path):
+    return path.replace('/', os.path.sep)
+
+
 class TestACEWidget(YafowilTestCase):
 
     def setUp(self):
         super(TestACEWidget, self).setUp()
-        from yafowil.widget.ace import widget
-        reload(widget)
+        from yafowil.widget import ace
+        reload(ace.widget)
+        ace.register()
 
     def test_edit_renderer(self):
         widget = factory('ace', 'acefield', props={'required': True})
@@ -79,6 +84,33 @@ class TestACEWidget(YafowilTestCase):
                id="ace-acefield">class Foo(object): pass</div>
         </div>
         """, fxml(widget(data)))
+
+    def test_resources(self):
+        factory.theme = 'default'
+        resources = factory.get_resources('yafowil.widget.ace')
+        self.assertTrue(resources.directory.endswith(np('/ace/resources')))
+        self.assertEqual(resources.path, 'yafowil-ace')
+
+        scripts = resources.scripts
+        self.assertEqual(len(scripts), 2)
+
+        self.assertTrue(scripts[0].directory.endswith(np('/ace/resources/ace')))
+        self.assertEqual(scripts[0].path, 'yafowil-ace/ace')
+        self.assertEqual(scripts[0].file_name, 'ace.js')
+        self.assertTrue(os.path.exists(scripts[0].file_path))
+
+        self.assertTrue(scripts[1].directory.endswith(np('/ace/resources')))
+        self.assertEqual(scripts[1].path, 'yafowil-ace')
+        self.assertEqual(scripts[1].file_name, 'widget.min.js')
+        self.assertTrue(os.path.exists(scripts[1].file_path))
+
+        styles = resources.styles
+        self.assertEqual(len(styles), 1)
+
+        self.assertTrue(styles[0].directory.endswith(np('/ace/resources')))
+        self.assertEqual(styles[0].path, 'yafowil-ace')
+        self.assertEqual(styles[0].file_name, 'widget.css')
+        self.assertTrue(os.path.exists(styles[0].file_path))
 
 
 if __name__ == '__main__':
