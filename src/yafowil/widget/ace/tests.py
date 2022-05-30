@@ -21,7 +21,8 @@ class TestACEWidget(YafowilTestCase):
     def setUp(self):
         super(TestACEWidget, self).setUp()
         from yafowil.widget import ace
-        reload(ace.widget)
+        from yafowil.widget.ace import widget
+        reload(widget)
         ace.register()
 
     def test_edit_renderer(self):
