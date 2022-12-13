@@ -3,6 +3,7 @@ import $ from 'jquery';
 export class AceWidget {
 
     static initialize(context) {
+        $('.ace-editor-wrapper', context).css('border', '1px solid red');
         $('.ace-editor-wrapper', context).each(function() {
             let elem = $(this);
             new AceWidget(elem, elem.data('yafowil-ace'));
@@ -29,3 +30,23 @@ export class AceWidget {
         this.textarea.val(this.editor.getValue());
     }
 }
+
+//////////////////////////////////////////////////////////////////////////////
+// yafowil.widget.array integration
+//////////////////////////////////////////////////////////////////////////////
+
+function ace_on_array_add(inst, context) {
+    AceWidget.initialize(context);
+}
+
+function ace_on_array_index(inst, row, index) {
+    console.log('on index');
+}
+
+$(function() {
+    if (yafowil_array === undefined) {
+        return;
+    }
+    yafowil_array.on_array_event('on_add', ace_on_array_add);
+    yafowil_array.on_array_event('on_index', ace_on_array_index);
+});
