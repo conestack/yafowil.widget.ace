@@ -27,6 +27,15 @@ var yafowil_ace = (function (exports, $) {
             this.textarea.val(this.editor.getValue());
         }
     }
+    function ace_on_array_add(inst, context) {
+        AceWidget.initialize(context);
+    }
+    $(function() {
+        if (yafowil_array === undefined) {
+            return;
+        }
+        yafowil_array.on_array_event('on_add', ace_on_array_add);
+    });
 
     $(function() {
         if (window.ts !== undefined) {

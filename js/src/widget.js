@@ -29,3 +29,18 @@ export class AceWidget {
         this.textarea.val(this.editor.getValue());
     }
 }
+
+//////////////////////////////////////////////////////////////////////////////
+// yafowil.widget.array integration
+//////////////////////////////////////////////////////////////////////////////
+
+function ace_on_array_add(inst, context) {
+    AceWidget.initialize(context);
+}
+
+$(function() {
+    if (yafowil_array === undefined) {
+        return;
+    }
+    yafowil_array.on_array_event('on_add', ace_on_array_add);
+});
