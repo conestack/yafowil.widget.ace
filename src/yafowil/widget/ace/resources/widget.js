@@ -3,7 +3,6 @@ var yafowil_ace = (function (exports, $) {
 
     class AceWidget {
         static initialize(context) {
-            $('.ace-editor-wrapper', context).css('border', '1px solid red');
             $('.ace-editor-wrapper', context).each(function() {
                 let elem = $(this);
                 new AceWidget(elem, elem.data('yafowil-ace'));
