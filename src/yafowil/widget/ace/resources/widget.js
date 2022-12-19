@@ -31,10 +31,10 @@ var yafowil_ace = (function (exports, $) {
         AceWidget.initialize(context);
     }
     $(function() {
-        if (yafowil_array === undefined) {
+        if (window.yafowil_array === undefined) {
             return;
         }
-        yafowil_array.on_array_event('on_add', ace_on_array_add);
+        window.yafowil_array.on_array_event('on_add', ace_on_array_add);
     });
 
     $(function() {
@@ -48,6 +48,7 @@ var yafowil_ace = (function (exports, $) {
     });
 
     exports.AceWidget = AceWidget;
+    exports.ace_on_array_add = ace_on_array_add;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
