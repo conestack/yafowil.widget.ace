@@ -38,9 +38,9 @@ export function ace_on_array_add(inst, context) {
     AceWidget.initialize(context);
 }
 
-$(function() {
+export function register_array_subscribers() {
     if (window.yafowil_array === undefined) {
         return;
     }
     window.yafowil_array.on_array_event('on_add', ace_on_array_add);
-});
+}

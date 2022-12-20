@@ -30,12 +30,12 @@ var yafowil_ace = (function (exports, $) {
     function ace_on_array_add(inst, context) {
         AceWidget.initialize(context);
     }
-    $(function() {
+    function register_array_subscribers() {
         if (window.yafowil_array === undefined) {
             return;
         }
         window.yafowil_array.on_array_event('on_add', ace_on_array_add);
-    });
+    }
 
     $(function() {
         if (window.ts !== undefined) {
@@ -45,10 +45,12 @@ var yafowil_ace = (function (exports, $) {
         } else {
             AceWidget.initialize();
         }
+        register_array_subscribers();
     });
 
     exports.AceWidget = AceWidget;
     exports.ace_on_array_add = ace_on_array_add;
+    exports.register_array_subscribers = register_array_subscribers;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
