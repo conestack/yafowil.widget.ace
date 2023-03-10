@@ -61,39 +61,54 @@ QUnit.module('AceWidget', hooks => {
     })
 
     QUnit.test('register_array_subscribers', assert => {
-        // window.yafowil_array is not defined
+        // return if window.yafowil === undefined
         register_array_subscribers();
         widget = wrapper.data('yafowil-ace');
-        // widget data is widget opts before initialize
-        assert.false(widget instanceof AceWidget);
-        assert.deepEqual(
-            widget,
-            {
-                "basepath": "./base/path",
-                "mode": "python",
-                "theme": "github"
-            }
-        );
-    });
 
-    QUnit.test('ace_on_array_add', assert => {
-        // patch yafowil_array
+        /* The widget will be equal to the initial opts
+           when initialize returns.
+        */
+        let opts = {
+            "basepath": "./base/path",
+            "mode": "python",
+            "theme": "github"
+        }
+        assert.false(widget instanceof AceWidget);
+        assert.deepEqual(widget, opts);
+        widget = null;
+
+        // // patch yafowil_array
         window.yafowil_array = {
             on_array_event: function(evt_name, evt_function) {
                 _array_subscribers[evt_name] = evt_function;
+            },
+            inside_template(elem) {
+                return elem.parents('.arraytemplate').length > 0;
             }
         };
         register_array_subscribers();
-
+        // create table DOM
         let table = $('<table />')
-            .append($('<tr />'))
+            .append($('<tr id="row" />'))
             .append($('<td />'))
             .appendTo('body');
 
-        // invoke array on_add
-        _array_subscribers['on_add'].apply(null, $('tr', table));
+        $('td', table).addClass('arraytemplate');
+        wrapper.detach().appendTo($('td', table));
 
+        // invoke array on_add - returns
+        let context = $('#row');
+        _array_subscribers['on_add'].apply(null, context);
         widget = wrapper.data('yafowil-ace');
-        assert.true(widget instanceof AceWidget);
+        assert.deepEqual(widget, opts);
+        $('td', table).removeClass('arraytemplate');
+
+        // invoke array on_add
+        wrapper.attr('id', '');
+        _array_subscribers['on_add'].apply(null, context);
+        widget = wrapper.data('yafowil-ace');
+        assert.ok(widget);
+
+        table.remove();
     });
 });
