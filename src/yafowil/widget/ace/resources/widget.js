@@ -5,6 +5,10 @@ var yafowil_ace = (function (exports, $) {
         static initialize(context) {
             $('.ace-editor-wrapper', context).each(function() {
                 let elem = $(this);
+                if (window.yafowil_array !== undefined &&
+                    window.yafowil_array.inside_template(elem)) {
+                    return;
+                }
                 new AceWidget(elem, elem.data('yafowil-ace'));
             });
         }
