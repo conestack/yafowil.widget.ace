@@ -5,6 +5,10 @@ export class AceWidget {
     static initialize(context) {
         $('.ace-editor-wrapper', context).each(function() {
             let elem = $(this);
+            if (window.yafowil_array !== undefined &&
+                window.yafowil_array.inside_template(elem)) {
+                return;
+            }
             new AceWidget(elem, elem.data('yafowil-ace'));
         });
     }
@@ -28,4 +32,19 @@ export class AceWidget {
     change_handle(evt) {
         this.textarea.val(this.editor.getValue());
     }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// yafowil.widget.array integration
+//////////////////////////////////////////////////////////////////////////////
+
+export function ace_on_array_add(inst, context) {
+    AceWidget.initialize(context);
+}
+
+export function register_array_subscribers() {
+    if (window.yafowil_array === undefined) {
+        return;
+    }
+    window.yafowil_array.on_array_event('on_add', ace_on_array_add);
 }
