@@ -1,10 +1,27 @@
 Changes
 =======
 
-1.3 (unreleased)
-----------------
+2.0a2 (unreleased)
+------------------
 
-- No changes yet.
+- Nothing changed yet.
+
+
+2.0a1 (2023-05-15)
+------------------
+
+- Add ``webresource`` support.
+  [rnix]
+
+- Extend JS by ``ace_on_array_add`` and ``register_array_subscribers``
+  to enable usage in ``yafowil.widget.array``.
+  [lenadax]
+
+- Update ACE Editor to v1.4.13.
+  [rnix]
+
+- Rewrite JavaScript using ES6.
+  [rnix]
 
 
 1.2 (2018-07-16)

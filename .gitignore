@@ -1,5 +1,12 @@
-*~
-*#*
-*.pyc
 *.egg-info
+*.pyc
+*.pyo
+/.coverage
 /dist/
+/htmlcov/
+/js/karma/
+/node_modules/
+/package-lock.json
+/py2/
+/py3/
+/pypy3/
