@@ -101,9 +101,9 @@ Customize syntax highlighting and appearance with one of the available ACE theme
     }
     '''
     ace = factory('#field:ace', value=value, props={
-        'label': 'Cobalt Theme',
+        'label': 'Solarized Theme',
         'required': 'Code is required',
-        'theme': 'cobalt',
+        'theme': 'solarized_light',
         'mode': 'javascript'
     })
 """
@@ -120,9 +120,9 @@ function foo(items) {
 def ace_themes():
     part = factory(u'fieldset', name='yafowil.widget.ace.themes')
     part['ace'] = factory('#field:ace', value=ace_theme_value, props={
-        'label': 'Cobalt Theme',
+        'label': 'Solarized Theme',
         'required': 'Code is required',
-        'theme': 'cobalt',
+        'theme': 'solarized_light',
         'mode': 'javascript'
     })
     return {
@@ -132,5 +132,63 @@ def ace_themes():
     }
 
 
+DOC_ACE_DARKMODE = """
+Dark Mode
+---------
+
+Customize syntax highlighting and appearance  for dark mode with one of the
+available ACE themes.
+The current ACE theme corresponds to the theme set in Bootstrap5 HTML
+data-bs-theme attribute ('light' | 'dark').
+
+Try it out using the color switch above!
+
+.. code-block:: python
+
+    value = '''
+    function foo(items) {
+        for (var i=0; i<=items.length; i++) {
+            alert(items[i]);
+        }
+    }
+    '''
+    ace = factory('#field:ace', value=value, props={
+        'label': 'Light and Dark Theme',
+        'required': 'Code is required',
+        'theme': 'chrome',
+        'dark_theme': 'tomorrow_night',
+        'mode': 'javascript'
+    })
+"""
+
+ace_darkmode_value = """\
+function foo(items) {
+    for (var i=0; i<=items.length; i++) {
+        alert(items[i]);
+    }
+}
+"""
+
+
+def ace_darkmode():
+    part = factory(u'fieldset', name='yafowil.widget.ace.darkmode')
+    part['ace'] = factory('#field:ace', value=ace_theme_value, props={
+        'label': 'Light and Dark Theme',
+        'required': 'Code is required',
+        'theme': 'chrome',
+        'dark_theme': 'tomorrow_night',
+        'mode': 'javascript'
+    })
+    return {
+        'widget': part,
+        'doc': DOC_ACE_DARKMODE,
+        'title': 'Dark Theme',
+    }
+
+
+
 def get_example():
-    return [ace_python(), ace_js(), ace_themes()]
+    themes = [ace_python(), ace_js(), ace_themes()]
+    if factory.theme == 'bootstrap5':
+        themes.append(ace_darkmode())
+    return themes

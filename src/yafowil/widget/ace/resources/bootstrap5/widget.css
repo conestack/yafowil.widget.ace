@@ -1,0 +1,8 @@
+div.ace-editor-wrapper {
+  height: 400px;
+  overflow: hidden;
+}
+
+div.ace-editor {
+  height: 400px;
+}
