@@ -188,7 +188,8 @@ def ace_darkmode():
 
 
 def get_example():
-    themes = [ace_python(), ace_js(), ace_themes()]
+    themes = []
     if factory.theme == 'bootstrap5':
         themes.append(ace_darkmode())
+    themes += [ace_python(), ace_js(), ace_themes()]
     return themes
