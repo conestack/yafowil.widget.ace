@@ -1,9 +1,6 @@
-name: PY Test ace
+name: Python tests
 
-on:
-  push:
-    paths:
-    - '**.py'
+on: [push]
 
 jobs:
   test:
@@ -41,10 +38,12 @@ jobs:
         pip install https://github.com/conestack/webresource/archive/master.zip
         pip install https://github.com/conestack/yafowil/archive/master.zip
         pip install -e .[test]
+
     - name: Run tests
       run: |
         python --version
         python -m pytest src/yafowil/widget/ace/tests
+
     - name: Run coverage
       run: |
         coverage run --source=src/yafowil/widget/ace --omit=src/yafowil/widget/ace/example.py -m pytest src/yafowil/widget/ace/tests
