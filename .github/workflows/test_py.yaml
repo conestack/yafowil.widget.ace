@@ -1,5 +1,6 @@
 name: PY Test ace
 
+on: [push]
 # on:
 #   push:
 #     paths:

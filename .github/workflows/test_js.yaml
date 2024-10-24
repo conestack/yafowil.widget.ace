@@ -1,5 +1,6 @@
 name: JS Test ace
 
+on: [push]
 # on:
 #   push:
 #     paths:
