@@ -2,11 +2,10 @@
 *.pyc
 *.pyo
 /.coverage
+/.mxmake/
 /dist/
 /htmlcov/
-/js/karma/
 /node_modules/
-/package-lock.json
-/py2/
-/py3/
-/pypy3/
+/pnpm-lock.yaml
+/requirements-mxdev.txt
+/venv/
