@@ -1,10 +1,9 @@
 name: JS Test ace
 
-on: [push]
-# on:
-#   push:
-#     paths:
-#     - '**.js'
+on:
+  push:
+    paths:
+    - '**.js'
 
 jobs:
   test:
@@ -20,8 +19,7 @@ jobs:
     - uses: pnpm/action-setup@v4
 
     - name: Install
-      run: |
-        make install
+      run: make install
 
     - name: Run tests
       run: make wtr
