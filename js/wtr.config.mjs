@@ -9,7 +9,7 @@ export default {
         }
     },
     files: [
-        'tests/**/test_*.js'
+        'js/tests/**/test_*.js'
     ],
     plugins: [
         importMapsPlugin({

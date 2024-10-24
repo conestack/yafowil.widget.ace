@@ -1,5 +1,6 @@
 import {AceWidget} from '../src/widget.js';
 import {register_array_subscribers} from '../src/widget.js';
+import $ from 'jquery';
 
 QUnit.module('AceWidget', hooks => {
     let wrapper,
