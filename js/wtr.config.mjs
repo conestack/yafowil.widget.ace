@@ -16,7 +16,8 @@ export default {
             inject: {
                 importMap: {
                     imports: {
-                        'jquery': './node_modules/jquery/dist-module/jquery.module.js'
+                        'jquery': './node_modules/jquery/dist-module/jquery.module.js',
+                        'ace': './src/yafowil/widget/ace/resources/ace/ace.js'
                     },
                 },
             },
