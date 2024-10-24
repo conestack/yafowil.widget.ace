@@ -1,64 +1,68 @@
-/* 
- * yafowil ace editor widget
- * 
- * Requires: tinymce
- * Optional: bdajax
- */
+var yafowil_ace = (function (exports, $) {
+    'use strict';
 
-if (typeof(window['yafowil']) == "undefined") yafowil = {};
-
-(function($) {
-
-    $(document).ready(function() {
-        // initial binding
-        yafowil.ace.binder();
-        
-        // add after ajax binding if bdajax present
-        if (typeof(window['bdajax']) != "undefined") {
-            $.extend(bdajax.binders, {
-                ace_binder: yafowil.ace.binder
+    class AceWidget {
+        static initialize(context) {
+            $('.ace-editor-wrapper', context).each(function() {
+                let elem = $(this);
+                if (window.yafowil_array !== undefined &&
+                    window.yafowil_array.inside_template(elem)) {
+                    return;
+                }
+                new AceWidget(elem, elem.data('yafowil-ace'));
             });
         }
-    });
-    
-    $.extend(yafowil, {
-        
-        ace: {
-            
-            option: function(elem, name) {
-                var classes = elem.attr('class').split(' ');
-                var class_, i, base;
-                for (i = 0; i < classes.length; i++) {
-                    class_ = classes[i];
-                    base = 'ace-option-' + name;
-                    if (class_.indexOf(base) == 0) {
-                        return class_.substring(base.length + 1, class_.length);
-                    }
-                }
-            },
-            
-            binder: function(context) {
-                $('.ace-editor', context).each(function() {
-                    var elem = $(this);
-                    var parent = elem.parent();
-                    var textarea = $('.ace-editor-value', parent);
-                    elem.width(parent.width());
-                    var theme = yafowil.ace.option(parent, 'theme');
-                    var mode = yafowil.ace.option(parent, 'mode');
-                    var editor = ace.edit($(this).attr('id'));
-                    editor.setTheme('ace/theme/' + theme);
-                    editor.getSession().setMode('ace/mode/' + mode);
-                    var bind_change = function(editor, textarea) {
-                        var e = editor;
-                        var ta = textarea;
-                        e.getSession().on('change', function(evt) {
-                            ta.val(e.getValue());
-                        });
-                    }
-                    bind_change(editor, textarea);
-                });
+        constructor(elem, opts) {
+            elem.data('yafowil-ace', this);
+            this.elem = elem;
+            this.opts = opts;
+            this.ed_elem = $('.ace-editor', elem);
+            this.textarea = $('.ace-editor-value', elem);
+            if (opts.basepath) {
+                ace.config.set('basePath', opts.basepath);
             }
+            let ed = this.editor = ace.edit(this.ed_elem.attr('id'));
+            ed.setTheme(`ace/theme/${opts.theme}`);
+            let sess = ed.getSession();
+            sess.setMode(`ace/mode/${opts.mode}`);
+            sess.on('change', this.change_handle.bind(this));
         }
+        change_handle(evt) {
+            this.textarea.val(this.editor.getValue());
+        }
+    }
+    function ace_on_array_add(inst, context) {
+        AceWidget.initialize(context);
+    }
+    function register_array_subscribers() {
+        if (window.yafowil_array === undefined) {
+            return;
+        }
+        window.yafowil_array.on_array_event('on_add', ace_on_array_add);
+    }
+
+    $(function() {
+        if (window.ts !== undefined) {
+            ts.ajax.register(AceWidget.initialize, true);
+        } else if (window.bdajax !== undefined) {
+            bdajax.register(AceWidget.initialize, true);
+        } else {
+            AceWidget.initialize();
+        }
+        register_array_subscribers();
     });
 
-})(jQuery);
+    exports.AceWidget = AceWidget;
+    exports.ace_on_array_add = ace_on_array_add;
+    exports.register_array_subscribers = register_array_subscribers;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+
+    window.yafowil = window.yafowil || {};
+    window.yafowil.ace = exports;
+
+
+    return exports;
+
+})({}, jQuery);
