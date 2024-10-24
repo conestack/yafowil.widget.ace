@@ -49,8 +49,7 @@ setup(
     ],
     extras_require=dict(test=[
         'lxml',
-        'pytest',
-        'zope.testrunner'
+        'pytest'
     ]),
     entry_points="""
     [yafowil.plugin]
