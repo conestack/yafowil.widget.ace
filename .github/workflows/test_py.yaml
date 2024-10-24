@@ -1,9 +1,9 @@
 name: PY Test ace
 
-on:
-  push:
-    paths:
-    - '**.py'
+# on:
+#   push:
+#     paths:
+#     - '**.py'
 
 jobs:
   test:

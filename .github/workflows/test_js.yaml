@@ -1,13 +1,13 @@
 name: JS Test ace
 
-on:
-  push:
-    paths:
-    - '**.js'
+# on:
+#   push:
+#     paths:
+#     - '**.js'
 
 jobs:
   test:
-    name: TEST ACE
+    name: Test ace
 
     runs-on: ubuntu-latest
 
