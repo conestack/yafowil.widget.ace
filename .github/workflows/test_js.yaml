@@ -19,7 +19,9 @@ jobs:
         python-version: 3.12
 
     - name: Install
-      run: make install
+      run: |
+        npm install pnpm
+        make install
 
     - name: Run tests
       run: make wtr
