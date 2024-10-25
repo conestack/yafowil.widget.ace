@@ -36,7 +36,7 @@ resources.add(wr.ScriptResource(
 resources.add(wr.StyleResource(
     name='yafowil-ace-css',
     directory=resources_dir,
-    resource='widget.css'
+    resource='default/widget.css'
 ))
 
 # B/C resources ##############################################################
@@ -52,7 +52,7 @@ js = [{
 }]
 css = [{
     'group': 'yafowil.widget.ace.common',
-    'resource': 'widget.css',
+    'resource': 'default/widget.css',
     'order': 20,
 }]
 
