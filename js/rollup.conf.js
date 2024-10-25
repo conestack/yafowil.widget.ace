@@ -10,6 +10,11 @@ window.yafowil.ace = exports;
 `;
 
 export default args => {
+
+    ////////////////////////////////////////////////////////////////////////////
+    // DEFAULT
+    ////////////////////////////////////////////////////////////////////////////
+
     let bundle_default = {
         input: 'js/src/default/bundle.js',
         plugins: [
@@ -47,29 +52,28 @@ export default args => {
             interop: 'default'
         });
     }
-    
     let scss_default = {
         input: ['scss/default/styles.scss'],
-        output: [
-          {
+        output: [{
             file: `${out_dir}/default/widget.css`,
             format: 'es',
             plugins: [terser()], // Optional: Minify the output
-          },
-        ],
+        }],
         plugins: [
-          postcss({
-            extract: true,
-            minimize: true,
-            use: [
-              ['sass', { outputStyle: 'compressed' }],
-            ],
-          }),
+            postcss({
+                extract: true,
+                minimize: true,
+                use: [
+                    ['sass', { outputStyle: 'compressed' }],
+                ],
+            }),
         ],
-      };
-    
-    
-    // Bootstrap 5
+    };
+
+    ////////////////////////////////////////////////////////////////////////////
+    // BOOTSTRAP5
+    ////////////////////////////////////////////////////////////////////////////
+
     let bundle_bs5 = {
         input: 'js/src/bootstrap5/bundle.js',
         plugins: [
@@ -107,26 +111,24 @@ export default args => {
             interop: 'default'
         });
     }
-    
     let scss_bs5 = {
         input: ['scss/bootstrap5/styles.scss'],
-        output: [
-          {
+        output: [{
             file: `${out_dir}/bootstrap5/widget.css`,
             format: 'es',
             plugins: [terser()], // Optional: Minify the output
-          },
-        ],
+        }],
         plugins: [
-          postcss({
-            extract: true,
-            minimize: true,
-            use: [
-              ['sass', { outputStyle: 'compressed' }],
-            ],
-          }),
+            postcss({
+                extract: true,
+                minimize: true,
+                use: [
+                    ['sass', { outputStyle: 'compressed' }],
+                ],
+            }),
         ],
-      };
+    };
 
+    // Return all configurations as an array
     return [bundle_default, scss_default, bundle_bs5, scss_bs5];
 };
