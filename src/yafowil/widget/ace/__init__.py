@@ -30,8 +30,8 @@ resources.add(wr.ScriptResource(
         'jquery-js',
         'ace-js'
     ],
-    resource='widget.js',
-    compressed='widget.min.js'
+    resource='default/widget.js',
+    compressed='default/widget.min.js'
 ))
 resources.add(wr.StyleResource(
     name='yafowil-ace-css',
@@ -47,7 +47,7 @@ js = [{
     'order': 20,
 }, {
     'group': 'yafowil.widget.ace.common',
-    'resource': 'widget.js',
+    'resource': 'default/widget.js',
     'order': 21,
 }]
 css = [{

@@ -1,5 +1,7 @@
-import {AceWidget} from '../src/widget.js';
-import {register_array_subscribers} from '../src/widget.js';
+import {AceWidget} from '../../src/default/widget.js';
+import {register_array_subscribers} from '../../src/default/widget.js';
+import $ from 'jquery';
+import * as ace from 'ace'; // Necessary for global access in tests; do not remove.
 
 QUnit.module('AceWidget', hooks => {
     let wrapper,

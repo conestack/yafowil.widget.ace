@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { AceWidget } from '../widget.js';
+import { AceWidget } from '../default/widget.js';
 
 export class BS5AceWidget extends AceWidget {
 

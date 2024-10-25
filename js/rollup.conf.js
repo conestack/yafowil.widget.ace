@@ -1,8 +1,7 @@
 import cleanup from 'rollup-plugin-cleanup';
-import {terser} from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 const out_dir = 'src/yafowil/widget/ace/resources';
-const out_dir_bs5 = 'src/yafowil/widget/ace/resources/bootstrap5';
 
 const outro = `
 window.yafowil = window.yafowil || {};
@@ -11,13 +10,13 @@ window.yafowil.ace = exports;
 
 export default args => {
     let conf = {
-        input: 'js/src/bundle.js',
+        input: 'js/src/default/bundle.js',
         plugins: [
             cleanup()
         ],
         output: [{
             name: 'yafowil_ace',
-            file: `${out_dir}/widget.js`,
+            file: `${out_dir}/default/widget.js`,
             format: 'iife',
             outro: outro,
             globals: {
@@ -34,7 +33,7 @@ export default args => {
     if (args.configDebug !== true) {
         conf.output.push({
             name: 'yafowil_ace',
-            file: `${out_dir}/widget.min.js`,
+            file: `${out_dir}/default/widget.min.js`,
             format: 'iife',
             plugins: [
                 terser()
@@ -56,7 +55,7 @@ export default args => {
         ],
         output: [{
             name: 'yafowil_ace',
-            file: `${out_dir_bs5}/widget.js`,
+            file: `${out_dir}/bootstrap5/widget.js`,
             format: 'iife',
             outro: outro,
             globals: {
@@ -73,7 +72,7 @@ export default args => {
     if (args.configDebug !== true) {
         conf_2.output.push({
             name: 'yafowil_ace',
-            file: `${out_dir_bs5}/widget.min.js`,
+            file: `${out_dir}/bootstrap5/widget.min.js`,
             format: 'iife',
             plugins: [
                 terser()
