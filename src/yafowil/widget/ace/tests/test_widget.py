@@ -32,6 +32,7 @@ class TestACEWidget(YafowilTestCase):
                                 &quot;&quot;,
                                 &quot;theme&quot;:
                                 &quot;github&quot;,
+                                &quot;dark_theme&quot;: null,
                                 &quot;mode&quot;:
                                 &quot;python&quot;}">
           <textarea class="ace-editor-value"
@@ -74,6 +75,7 @@ class TestACEWidget(YafowilTestCase):
                                 &quot;&quot;,
                                 &quot;theme&quot;:
                                 &quot;github&quot;,
+                                &quot;dark_theme&quot;: null,
                                 &quot;mode&quot;:
                                 &quot;python&quot;}">
           <textarea class="ace-editor-value"
@@ -102,7 +104,7 @@ class TestACEWidget(YafowilTestCase):
 
         self.assertTrue(scripts[1].directory.endswith(np('/ace/resources')))
         self.assertEqual(scripts[1].path, 'yafowil-ace')
-        self.assertEqual(scripts[1].file_name, 'widget.min.js')
+        self.assertEqual(scripts[1].file_name, 'default/widget.min.js')
         self.assertTrue(os.path.exists(scripts[1].file_path))
 
         styles = resources.styles
@@ -110,5 +112,5 @@ class TestACEWidget(YafowilTestCase):
 
         self.assertTrue(styles[0].directory.endswith(np('/ace/resources')))
         self.assertEqual(styles[0].path, 'yafowil-ace')
-        self.assertEqual(styles[0].file_name, 'widget.css')
+        self.assertEqual(styles[0].file_name, 'default/widget.css')
         self.assertTrue(os.path.exists(styles[0].file_path))
