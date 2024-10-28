@@ -116,7 +116,7 @@ export default args => {
         output: [{
             file: `${out_dir}/bootstrap5/widget.css`,
             format: 'es',
-            plugins: [terser()], // Optional: Minify the output
+            plugins: [terser()],
         }],
         plugins: [
             postcss({
@@ -129,6 +129,5 @@ export default args => {
         ],
     };
 
-    // Return all configurations as an array
     return [bundle_default, scss_default, bundle_bs5, scss_bs5];
 };
