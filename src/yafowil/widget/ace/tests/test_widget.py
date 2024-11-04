@@ -102,15 +102,15 @@ class TestACEWidget(YafowilTestCase):
         self.assertEqual(scripts[0].file_name, 'ace.js')
         self.assertTrue(os.path.exists(scripts[0].file_path))
 
-        self.assertTrue(scripts[1].directory.endswith(np('/ace/resources')))
+        self.assertTrue(scripts[1].directory.endswith(np('/ace/resources/default')))
         self.assertEqual(scripts[1].path, 'yafowil-ace')
-        self.assertEqual(scripts[1].file_name, 'default/widget.min.js')
+        self.assertEqual(scripts[1].file_name, 'widget.min.js')
         self.assertTrue(os.path.exists(scripts[1].file_path))
 
         styles = resources.styles
         self.assertEqual(len(styles), 1)
 
-        self.assertTrue(styles[0].directory.endswith(np('/ace/resources')))
+        self.assertTrue(styles[0].directory.endswith(np('/ace/resources/default')))
         self.assertEqual(styles[0].path, 'yafowil-ace')
-        self.assertEqual(styles[0].file_name, 'default/widget.css')
+        self.assertEqual(styles[0].file_name, 'widget.min.css')
         self.assertTrue(os.path.exists(styles[0].file_path))

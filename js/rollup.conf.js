@@ -10,6 +10,7 @@ window.yafowil.ace = exports;
 `;
 
 export default args => {
+    let conf = [];
 
     ////////////////////////////////////////////////////////////////////////////
     // DEFAULT
@@ -53,11 +54,11 @@ export default args => {
         });
     }
     let scss_default = {
-        input: ['scss/default/styles.scss'],
+        input: ['scss/default/widget.scss'],
         output: [{
-            file: `${out_dir}/default/widget.css`,
+            file: `${out_dir}/default/widget.min.css`,
             format: 'es',
-            plugins: [terser()], // Optional: Minify the output
+            plugins: [terser()],
         }],
         plugins: [
             postcss({
@@ -69,6 +70,7 @@ export default args => {
             }),
         ],
     };
+    conf.push(bundle_default, scss_default);
 
     ////////////////////////////////////////////////////////////////////////////
     // BOOTSTRAP5
@@ -112,9 +114,9 @@ export default args => {
         });
     }
     let scss_bs5 = {
-        input: ['scss/bootstrap5/styles.scss'],
+        input: ['scss/bootstrap5/widget.scss'],
         output: [{
-            file: `${out_dir}/bootstrap5/widget.css`,
+            file: `${out_dir}/bootstrap5/widget.min.css`,
             format: 'es',
             plugins: [terser()],
         }],
@@ -128,6 +130,7 @@ export default args => {
             }),
         ],
     };
+    conf.push(bundle_bs5, scss_bs5);
 
-    return [bundle_default, scss_default, bundle_bs5, scss_bs5];
+    return conf;
 };
