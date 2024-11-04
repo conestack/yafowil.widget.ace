@@ -27,6 +27,7 @@ resources.add(wr.ScriptResource(
 resources.add(wr.ScriptResource(
     name='yafowil-ace-js',
     directory=os.path.join(resources_dir, 'default'),
+    path='yafowil-ace/default',
     depends=[
         'jquery-js',
         'ace-js'
@@ -37,6 +38,7 @@ resources.add(wr.ScriptResource(
 resources.add(wr.StyleResource(
     name='yafowil-ace-css',
     directory=os.path.join(resources_dir, 'default'),
+    path='yafowil-ace/default',
     resource='widget.min.css'
 ))
 
@@ -78,6 +80,7 @@ bootstrap5_resources.add(wr.ScriptResource(
 bootstrap5_resources.add(wr.ScriptResource(
     name='yafowil-ace-js',
     directory=os.path.join(resources_dir, 'bootstrap5'),
+    path='yafowil-ace/bootstrap5',
     depends=[
         'jquery-js',
         'ace-js'
@@ -88,6 +91,7 @@ bootstrap5_resources.add(wr.ScriptResource(
 bootstrap5_resources.add(wr.StyleResource(
     name='yafowil-ace-css',
     directory=os.path.join(resources_dir, 'bootstrap5'),
+    path='yafowil-ace/bootstrap5',
     resource='widget.min.css'
 ))
 
