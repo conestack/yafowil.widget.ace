@@ -70,9 +70,7 @@ var yafowil_ace = (function (exports, $) {
                     }
                 }
             });
-            observer.observe(html, {
-                attributes: true
-            });
+            observer.observe(html, { attributes: true });
         }
         update_theme(theme) {
             const ace_theme = this.themes[theme] || this.themes['light'];
