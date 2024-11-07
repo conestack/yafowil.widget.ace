@@ -4,6 +4,8 @@ import { AceWidget } from '../default/widget.js';
 export class BS5AceWidget extends AceWidget {
 
     /**
+     * Initializes each widget in the given DOM context.
+     * 
      * @param {HTMLElement} context - DOM context for initialization.
      */
     static initialize(context) {
@@ -18,9 +20,9 @@ export class BS5AceWidget extends AceWidget {
     }
 
     /**
-     * @param {jQuery} elem - ace input element.
-     * @param {Object} opts - Ace editor options.
-     * @param {String} opts.theme - Ace editor theme.
+     * @param {jQuery} elem              - Ace input element.
+     * @param {Object} opts              - Ace editor options.
+     * @param {String} opts.theme        - Ace editor theme.
      * @param {String} [opts.dark_theme] - Optional Ace editor dark mode theme.
      */
     constructor(elem, opts) {
@@ -32,7 +34,7 @@ export class BS5AceWidget extends AceWidget {
     }
 
     /**
-     * Configures themes for light and dark modes.
+     * Configures themes for light and dark modes and sets the initial value.
      * 
      * @param {Object} opts - Options including theme settings.
      */
@@ -51,13 +53,15 @@ export class BS5AceWidget extends AceWidget {
         const html = document.documentElement;
         const observer = new MutationObserver((mutationsList) => {
             for (let mutation of mutationsList) {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
+                if (
+                    mutation.type === 'attributes'
+                    && mutation.attributeName === 'data-bs-theme'
+                ) {
                     const new_theme = html.getAttribute('data-bs-theme');
                     this.update_theme(new_theme);
                 }
             }
         });
-
         observer.observe(html, { attributes: true });
     }
 
