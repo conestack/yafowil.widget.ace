@@ -28,6 +28,9 @@ export class BS5AceWidget extends AceWidget {
     constructor(elem, opts) {
         super(elem, opts);
         this.update_theme = this.update_theme.bind(this);
+        if (window.ts !== undefined) {
+            window.ts.ajax.attach(this, elem);
+        }
         if (opts.dark_theme) {
             this.observe_theme_change();
         }
@@ -51,7 +54,7 @@ export class BS5AceWidget extends AceWidget {
      */
     observe_theme_change() {
         const html = document.documentElement;
-        const observer = new MutationObserver((mutationsList) => {
+        this.observer = new MutationObserver((mutationsList) => {
             for (let mutation of mutationsList) {
                 if (
                     mutation.type === 'attributes'
@@ -62,7 +65,7 @@ export class BS5AceWidget extends AceWidget {
                 }
             }
         });
-        observer.observe(html, { attributes: true });
+        this.observer.observe(html, { attributes: true });
     }
 
     /**
@@ -73,6 +76,11 @@ export class BS5AceWidget extends AceWidget {
     update_theme(theme) {
         const ace_theme = this.themes[theme] || this.themes['light'];
         this.editor.setTheme(`ace/theme/${ace_theme}`);
+    }
+
+    // ts.ajax destroy handler
+    destroy() {
+        this.observer.disconnect();
     }
 }
 

@@ -49,6 +49,9 @@ var yafowil_ace = (function (exports, $) {
         constructor(elem, opts) {
             super(elem, opts);
             this.update_theme = this.update_theme.bind(this);
+            if (window.ts !== undefined) {
+                window.ts.ajax.attach(this, elem);
+            }
             if (opts.dark_theme) {
                 this.observe_theme_change();
             }
@@ -62,19 +65,25 @@ var yafowil_ace = (function (exports, $) {
         }
         observe_theme_change() {
             const html = document.documentElement;
-            const observer = new MutationObserver((mutationsList) => {
+            this.observer = new MutationObserver((mutationsList) => {
                 for (let mutation of mutationsList) {
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
+                    if (
+                        mutation.type === 'attributes'
+                        && mutation.attributeName === 'data-bs-theme'
+                    ) {
                         const new_theme = html.getAttribute('data-bs-theme');
                         this.update_theme(new_theme);
                     }
                 }
             });
-            observer.observe(html, { attributes: true });
+            this.observer.observe(html, { attributes: true });
         }
         update_theme(theme) {
             const ace_theme = this.themes[theme] || this.themes['light'];
             this.editor.setTheme(`ace/theme/${ace_theme}`);
+        }
+        destroy() {
+            this.observer.disconnect();
         }
     }
     function ace_on_array_add(inst, context) {
