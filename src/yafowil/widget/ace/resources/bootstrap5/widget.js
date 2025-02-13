@@ -83,7 +83,14 @@ var yafowil_ace = (function (exports, $) {
             this.editor.setTheme(`ace/theme/${ace_theme}`);
         }
         destroy() {
-            this.observer.disconnect();
+            if (this.observer) {
+                this.observer.disconnect();
+            }
+            let sess = this.editor.getSession();
+            sess.off();
+            this.editor.destroy();
+            this.editor = null;
+            this.ed_elem = null;
         }
     }
     function ace_on_array_add(inst, context) {

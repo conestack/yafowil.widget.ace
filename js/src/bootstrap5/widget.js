@@ -80,7 +80,14 @@ export class BS5AceWidget extends AceWidget {
 
     // ts.ajax destroy handler
     destroy() {
-        this.observer.disconnect();
+        if (this.observer) {
+            this.observer.disconnect();
+        }
+        let sess = this.editor.getSession();
+        sess.off();
+        this.editor.destroy();
+        this.editor = null;
+        this.ed_elem = null;
     }
 }
 
