@@ -4,7 +4,17 @@ Changes
 2.0a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- New widget configuration options: ``dark_theme``, ``wrapper_class``.
+  [lenadax]
+
+- Implement dark theme option for ``Bootstrap5`` dark theme mode.
+  [lenadax]
+
+- Use rollup for bundling scss. Use ``make rollup`` to compile js and scss.
+  [lenadax]
+
+- Create Bootstrap5 widget version.
+  [lenadax]
 
 
 2.0a1 (2023-05-15)
