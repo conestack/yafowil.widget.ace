@@ -4,6 +4,9 @@ Changes
 2.0a2 (unreleased)
 ------------------
 
+- Update jQuery to version ``4.0.0-beta.2``.
+  [lenadax]
+
 - New widget configuration options: ``dark_theme``, ``wrapper_class``.
   [lenadax]
 
