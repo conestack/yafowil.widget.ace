@@ -6,6 +6,7 @@ from yafowil.utils import as_data_attrs
 from yafowil.utils import attr_value
 from yafowil.utils import cssid
 from yafowil.utils import managedprops
+from yafowil.utils import cssclasses
 
 
 @managedprops('basepath', 'theme', 'dark_theme', 'mode', 'wrapper_class')
@@ -26,7 +27,7 @@ def ace_edit_renderer(widget, data):
     }
     editor = data.tag('div', value, **editor_attrs)
     wrapper_attrs = {
-        'class': attr_value('wrapper_class', widget, data)
+        'class': cssclasses(widget, data, classattr='wrapper_class')
     }
     wrapper_attrs.update(as_data_attrs({
         'yafowil-ace': {
