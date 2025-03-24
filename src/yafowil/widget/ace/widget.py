@@ -88,7 +88,7 @@ factory.doc['props']['ace.mode'] = """\
 ACE Mode.
 """
 
-factory.defaults['ace.readonly'] = False
-factory.doc['props']['ace.readonly'] = """\
+factory.defaults['ace.read_only'] = False
+factory.doc['props']['ace.read_only'] = """\
 Render ACE widget in readonly mode.
 """
