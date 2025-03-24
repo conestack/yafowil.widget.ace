@@ -9,7 +9,7 @@ from yafowil.utils import managedprops
 from yafowil.utils import cssclasses
 
 
-@managedprops('basepath', 'theme', 'dark_theme', 'mode', 'wrapper_class')
+@managedprops('basepath', 'theme', 'dark_theme', 'mode', 'wrapper_class', 'read_only')
 def ace_edit_renderer(widget, data):
     value = fetch_value(widget, data)
     if not value:
@@ -34,16 +34,16 @@ def ace_edit_renderer(widget, data):
             'basepath': attr_value('basepath', widget, data),
             'theme': attr_value('theme', widget, data),
             'dark_theme': attr_value('dark_theme', widget, data),
-            'mode': attr_value('mode', widget, data)
+            'mode': attr_value('mode', widget, data),
+            'read_only': attr_value('read_only', widget, data)
         }
     }))
     return data.tag('div', ta + editor, **wrapper_attrs)
 
 
 def ace_display_renderer(widget, data):
-    raise NotImplementedError(
-        u"``yafowil.widget.ace`` does not support display mode yet"
-    )
+    widget.attrs['read_only'] = True
+    return ace_edit_renderer(widget, data)
 
 
 factory.register(
@@ -86,4 +86,9 @@ Requires bootstrap5 site theme.
 factory.defaults['ace.mode'] = 'python'
 factory.doc['props']['ace.mode'] = """\
 ACE Mode.
+"""
+
+factory.defaults['ace.readonly'] = False
+factory.doc['props']['ace.readonly'] = """\
+Render ACE widget in readonly mode.
 """

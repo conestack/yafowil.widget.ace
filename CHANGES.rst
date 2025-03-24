@@ -4,6 +4,9 @@ Changes
 2.0a2 (unreleased)
 ------------------
 
+- Introduce ``readonly`` widget attribute and support rendering in display mode.
+  [lenadax]
+
 - Update jQuery to version ``4.0.0-beta.2``.
   [lenadax]
 

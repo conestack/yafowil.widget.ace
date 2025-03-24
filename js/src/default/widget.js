@@ -22,7 +22,9 @@ export class AceWidget {
         if (opts.basepath) {
             ace.config.set('basePath', opts.basepath);
         }
-        let ed = this.editor = ace.edit(this.ed_elem.attr('id'));
+        let ed = this.editor = ace.edit(this.ed_elem.attr('id'), {
+            readOnly: opts.read_only
+        });
         this.set_theme(opts);
         let sess = ed.getSession();
         sess.setMode(`ace/mode/${opts.mode}`);
