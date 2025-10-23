@@ -4,7 +4,29 @@ Changes
 2.0a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Introduce ``readonly`` widget attribute and support rendering in display mode.
+  [lenadax]
+
+- Update jQuery to version ``4.0.0-beta.2``.
+  [lenadax]
+
+- New widget configuration options: ``dark_theme``, ``wrapper_class``.
+  [lenadax]
+
+- Implement dark theme option for ``Bootstrap5`` dark theme mode.
+  [lenadax]
+
+- Use rollup for bundling scss. Use ``make rollup`` to compile js and scss.
+  [lenadax]
+
+- Use ``webtestrunner`` instead of ``karma`` for js tests. Use ``make wtr`` to run tests.
+  [lenadax]
+
+- Use ``pnpm`` as package manager.
+  [lenadax]
+
+- Create Bootstrap5 widget version.
+  [lenadax]
 
 
 2.0a1 (2023-05-15)

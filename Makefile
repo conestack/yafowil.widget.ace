@@ -8,7 +8,6 @@
 #: core.packages
 #: js.nodejs
 #: js.rollup
-#: js.scss
 #: js.wtr
 #: qa.coverage
 #: qa.test
@@ -82,24 +81,6 @@ WTR_CONFIG?=js/wtr.config.mjs
 # Web test runner additional command line options.
 # Default: --coverage
 WTR_OPTIONS?=--coverage
-
-## js.scss
-
-# The SCSS root source file.
-# Default: scss/styles.scss
-SCSS_SOURCE?=scss/styles.scss
-
-# The target file for the compiles Stylesheet.
-# Default: scss/styles.css
-SCSS_TARGET?=src/yafowil/widget/ace/resources/widget.css
-
-# The target file for the compressed Stylesheet.
-# Default: scss/styles.min.css
-SCSS_MIN_TARGET?=src/yafowil/widget/ace/resources/widget.min.css
-
-# Additional options to be passed to SCSS compiler.
-# Default: --no-source-map=none
-SCSS_OPTIONS?=--no-source-map=none
 
 ## js.rollup
 
@@ -296,17 +277,6 @@ NODEJS_DEV_PACKAGES+=\
 .PHONY: wtr
 wtr: $(NODEJS_TARGET)
 	@web-test-runner $(WTR_OPTIONS) --config $(WTR_CONFIG)
-
-##############################################################################
-# scss
-##############################################################################
-
-NODEJS_DEV_PACKAGES+=sass
-
-.PHONY: scss
-scss: $(NODEJS_TARGET)
-	@sass $(SCSS_OPTIONS) $(SCSS_SOURCE) $(SCSS_TARGET)
-	@sass $(SCSS_OPTIONS) --style compressed $(SCSS_SOURCE) $(SCSS_MIN_TARGET)
 
 ##############################################################################
 # rollup
