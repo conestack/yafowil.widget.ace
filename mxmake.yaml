@@ -27,9 +27,4 @@ topics:
     wtr:
       WTR_CONFIG: js/wtr.config.mjs
 
-    scss:
-      SCSS_SOURCE: scss/styles.scss
-      SCSS_TARGET: src/yafowil/widget/ace/resources/widget.css
-      SCSS_MIN_TARGET: src/yafowil/widget/ace/resources/widget.min.css
-
 mx-ini: true

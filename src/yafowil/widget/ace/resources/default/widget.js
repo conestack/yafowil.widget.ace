@@ -21,11 +21,16 @@ var yafowil_ace = (function (exports, $) {
             if (opts.basepath) {
                 ace.config.set('basePath', opts.basepath);
             }
-            let ed = this.editor = ace.edit(this.ed_elem.attr('id'));
-            ed.setTheme(`ace/theme/${opts.theme}`);
+            let ed = this.editor = ace.edit(this.ed_elem.attr('id'), {
+                readOnly: opts.read_only
+            });
+            this.set_theme(opts);
             let sess = ed.getSession();
             sess.setMode(`ace/mode/${opts.mode}`);
             sess.on('change', this.change_handle.bind(this));
+        }
+        set_theme(opts) {
+            this.editor.setTheme(`ace/theme/${opts.theme}`);
         }
         change_handle(evt) {
             this.textarea.val(this.editor.getValue());
