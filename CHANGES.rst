@@ -1,7 +1,7 @@
 Changes
 =======
 
-2.0a2 (unreleased)
+2.0.0 (unreleased)
 ------------------
 
 - Introduce ``readonly`` widget attribute and support rendering in display mode.
