@@ -1,0 +1,14 @@
+div.ace-editor-wrapper {
+    height:400px;
+    overflow: hidden;
+
+    &.is-invalid {
+        border-color: var(--bs-form-invalid-border-color);
+    }
+    &.is-valid {
+        border-color: var(--bs-form-valid-border-color);
+    }
+}
+div.ace-editor {
+    height:400px;
+}

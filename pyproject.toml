@@ -1,0 +1,69 @@
+[build-system]
+requires = ["hatchling", "hatch-fancy-pypi-readme"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yafowil.widget.ace"
+version = "2.0.0.dev0"
+description = "ACE Editor Widget for YAFOWIL"
+readme = "README.rst"
+license = {text = "Simplified BSD"}
+authors = [{name = "Yafowil Contributors", email = "dev@conestack.org"}]
+classifiers = [
+    "Environment :: Web Environment",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "License :: OSI Approved :: BSD License",
+]
+dependencies = [
+    "yafowil>3.99",
+]
+
+[project.optional-dependencies]
+test = [
+    "lxml",
+    "pytest",
+]
+
+[project.entry-points."yafowil.plugin"]
+register = "yafowil.widget.ace:register"
+example = "yafowil.widget.ace.example:get_example"
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/x-rst"
+fragments = [
+    {path = "README.rst"},
+    {text = "\n\n"},
+    {path = "CHANGES.rst"},
+    {text = "\n\n"},
+    {path = "LICENSE.rst"},
+]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github/",
+    "/js/",
+    "/Makefile",
+    "/mx.ini",
+    "/mxmake.yaml",
+    "/package.json",
+    "/pnpm-lock.yaml",
+    "/scss",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/yafowil"]
+
+[tool.pytest.ini_options]
+consider_namespace_packages = true
+addopts = ["--import-mode=importlib"]
+pythonpath = "src"
+
+[tool.zest-releaser]
+create-wheel = true
