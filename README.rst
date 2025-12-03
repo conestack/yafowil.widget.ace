@@ -1,5 +1,21 @@
-This is a **ACE editor widget** for for `YAFOWIL 
-<http://pypi.python.org/pypi/yafowil>`_ 
+.. image:: https://img.shields.io/pypi/v/yafowil.widget.ace.svg
+    :target: https://pypi.python.org/pypi/yafowil.widget.ace
+    :alt: Latest PyPI version
+
+.. image:: https://img.shields.io/pypi/dm/yafowil.widget.ace.svg
+    :target: https://pypi.python.org/pypi/yafowil.widget.ace
+    :alt: Number of PyPI downloads
+
+.. image:: https://github.com/conestack/yafowil.widget.ace/actions/workflows/test_py.yaml/badge.svg
+    :target: https://github.com/conestack/yafowil.widget.ace/actions/workflows/test_py.yaml
+    :alt: Test yafowil.widget.ace Python
+
+.. image:: https://github.com/conestack/yafowil.widget.ace/actions/workflows/test_js.yaml/badge.svg
+    :target: https://github.com/conestack/yafowil.widget.ace/actions/workflows/test_js.yaml
+    :alt: Test yafowil.widget.ace JS
+
+This is a **ACE editor widget** for for `YAFOWIL
+<http://pypi.python.org/pypi/yafowil>`_
 
 - `ACE Editor <https://ace.c9.io>`_
 - `Documentation <http://docs.yafowil.info/en/latest/blueprints.html#ace>`_
