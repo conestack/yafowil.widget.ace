@@ -4,6 +4,9 @@ Changes
 2.0.0 (unreleased)
 ------------------
 
+- Refactor package layout to use ``pyproject.toml`` and implicit namespace packages.
+  [rnix]
+
 - Introduce ``readonly`` widget attribute and support rendering in display mode.
   [lenadax]
 
