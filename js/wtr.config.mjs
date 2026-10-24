@@ -1,6 +1,13 @@
 import {importMapsPlugin} from '@web/dev-server-import-maps';
 import {playwrightLauncher} from '@web/test-runner-playwright';
 
+export const importMap = {
+    imports: {
+        'jquery': './node_modules/jquery/dist-module/jquery.module.js',
+        'ace': './src/yafowil/widget/ace/resources/ace/ace.js'
+    },
+};
+
 export default {
     nodeResolve: true,
     browsers: [
@@ -21,14 +28,7 @@ export default {
     },
     plugins: [
         importMapsPlugin({
-            inject: {
-                importMap: {
-                    imports: {
-                        'jquery': './node_modules/jquery/dist-module/jquery.module.js',
-                        'ace': './src/yafowil/widget/ace/resources/ace/ace.js'
-                    },
-                },
-            },
+            inject: {importMap},
         }),
     ],
 }
