@@ -2,17 +2,15 @@ import $ from 'jquery';
 import { AceWidget } from '../default/widget.js';
 
 export class BS5AceWidget extends AceWidget {
-
     /**
      * Initializes each widget in the given DOM context.
-     * 
+     *
      * @param {HTMLElement} context - DOM context for initialization.
      */
     static initialize(context) {
-        $('.ace-editor-wrapper', context).each(function() {
-            let elem = $(this);
-            if (window.yafowil_array !== undefined &&
-                window.yafowil_array.inside_template(elem)) {
+        $('.ace-editor-wrapper', context).each(function () {
+            const elem = $(this);
+            if (window.yafowil_array?.inside_template(elem)) {
                 return;
             }
             new BS5AceWidget(elem, elem.data('yafowil-ace'));
@@ -38,13 +36,13 @@ export class BS5AceWidget extends AceWidget {
 
     /**
      * Configures themes for light and dark modes and sets the initial value.
-     * 
+     *
      * @param {Object} opts - Options including theme settings.
      */
     set_theme(opts) {
         this.themes = {
-            'light': opts.theme,
-            'dark': opts.dark_theme
+            light: opts.theme,
+            dark: opts.dark_theme,
         };
         this.update_theme(document.documentElement.getAttribute('data-bs-theme'));
     }
@@ -55,11 +53,8 @@ export class BS5AceWidget extends AceWidget {
     observe_theme_change() {
         const html = document.documentElement;
         this.observer = new MutationObserver((mutationsList) => {
-            for (let mutation of mutationsList) {
-                if (
-                    mutation.type === 'attributes'
-                    && mutation.attributeName === 'data-bs-theme'
-                ) {
+            for (const mutation of mutationsList) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
                     const new_theme = html.getAttribute('data-bs-theme');
                     this.update_theme(new_theme);
                 }
@@ -70,11 +65,11 @@ export class BS5AceWidget extends AceWidget {
 
     /**
      * Updates the Ace editor theme based on the specified Bootstrap theme.
-     * 
+     *
      * @param {string} theme - The active Bootstrap theme.
      */
     update_theme(theme) {
-        const ace_theme = this.themes[theme] || this.themes['light'];
+        const ace_theme = this.themes[theme] || this.themes.light;
         this.editor.setTheme(`ace/theme/${ace_theme}`);
     }
 
@@ -83,7 +78,7 @@ export class BS5AceWidget extends AceWidget {
         if (this.observer) {
             this.observer.disconnect();
         }
-        let sess = this.editor.getSession();
+        const sess = this.editor.getSession();
         sess.off();
         this.editor.destroy();
         this.editor = null;
@@ -98,7 +93,7 @@ export class BS5AceWidget extends AceWidget {
 /**
  * Re-initializes widget on array add event.
  */
-export function ace_on_array_add(inst, context) {
+export function ace_on_array_add(_inst, context) {
     BS5AceWidget.initialize(context);
 }
 

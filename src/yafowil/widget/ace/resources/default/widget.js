@@ -3,10 +3,9 @@ var yafowil_ace = (function (exports, $) {
 
     class AceWidget {
         static initialize(context) {
-            $('.ace-editor-wrapper', context).each(function() {
-                let elem = $(this);
-                if (window.yafowil_array !== undefined &&
-                    window.yafowil_array.inside_template(elem)) {
+            $('.ace-editor-wrapper', context).each(function () {
+                const elem = $(this);
+                if (window.yafowil_array?.inside_template(elem)) {
                     return;
                 }
                 new AceWidget(elem, elem.data('yafowil-ace'));
@@ -21,22 +20,23 @@ var yafowil_ace = (function (exports, $) {
             if (opts.basepath) {
                 ace.config.set('basePath', opts.basepath);
             }
-            let ed = this.editor = ace.edit(this.ed_elem.attr('id'), {
-                readOnly: opts.read_only
+            this.editor = ace.edit(this.ed_elem.attr('id'), {
+                readOnly: opts.read_only,
             });
+            const ed = this.editor;
             this.set_theme(opts);
-            let sess = ed.getSession();
+            const sess = ed.getSession();
             sess.setMode(`ace/mode/${opts.mode}`);
             sess.on('change', this.change_handle.bind(this));
         }
         set_theme(opts) {
             this.editor.setTheme(`ace/theme/${opts.theme}`);
         }
-        change_handle(evt) {
+        change_handle(_evt) {
             this.textarea.val(this.editor.getValue());
         }
     }
-    function ace_on_array_add(inst, context) {
+    function ace_on_array_add(_inst, context) {
         AceWidget.initialize(context);
     }
     function register_array_subscribers() {
@@ -46,7 +46,7 @@ var yafowil_ace = (function (exports, $) {
         window.yafowil_array.on_array_event('on_add', ace_on_array_add);
     }
 
-    $(function() {
+    $(() => {
         if (window.ts !== undefined) {
             ts.ajax.register(AceWidget.initialize, true);
         } else if (window.bdajax !== undefined) {

@@ -3,10 +3,9 @@ var yafowil_ace = (function (exports, $) {
 
     class AceWidget {
         static initialize(context) {
-            $('.ace-editor-wrapper', context).each(function() {
-                let elem = $(this);
-                if (window.yafowil_array !== undefined &&
-                    window.yafowil_array.inside_template(elem)) {
+            $('.ace-editor-wrapper', context).each(function () {
+                const elem = $(this);
+                if (window.yafowil_array?.inside_template(elem)) {
                     return;
                 }
                 new AceWidget(elem, elem.data('yafowil-ace'));
@@ -21,28 +20,28 @@ var yafowil_ace = (function (exports, $) {
             if (opts.basepath) {
                 ace.config.set('basePath', opts.basepath);
             }
-            let ed = this.editor = ace.edit(this.ed_elem.attr('id'), {
-                readOnly: opts.read_only
+            this.editor = ace.edit(this.ed_elem.attr('id'), {
+                readOnly: opts.read_only,
             });
+            const ed = this.editor;
             this.set_theme(opts);
-            let sess = ed.getSession();
+            const sess = ed.getSession();
             sess.setMode(`ace/mode/${opts.mode}`);
             sess.on('change', this.change_handle.bind(this));
         }
         set_theme(opts) {
             this.editor.setTheme(`ace/theme/${opts.theme}`);
         }
-        change_handle(evt) {
+        change_handle(_evt) {
             this.textarea.val(this.editor.getValue());
         }
     }
 
     class BS5AceWidget extends AceWidget {
         static initialize(context) {
-            $('.ace-editor-wrapper', context).each(function() {
-                let elem = $(this);
-                if (window.yafowil_array !== undefined &&
-                    window.yafowil_array.inside_template(elem)) {
+            $('.ace-editor-wrapper', context).each(function () {
+                const elem = $(this);
+                if (window.yafowil_array?.inside_template(elem)) {
                     return;
                 }
                 new BS5AceWidget(elem, elem.data('yafowil-ace'));
@@ -60,19 +59,16 @@ var yafowil_ace = (function (exports, $) {
         }
         set_theme(opts) {
             this.themes = {
-                'light': opts.theme,
-                'dark': opts.dark_theme
+                light: opts.theme,
+                dark: opts.dark_theme,
             };
             this.update_theme(document.documentElement.getAttribute('data-bs-theme'));
         }
         observe_theme_change() {
             const html = document.documentElement;
             this.observer = new MutationObserver((mutationsList) => {
-                for (let mutation of mutationsList) {
-                    if (
-                        mutation.type === 'attributes'
-                        && mutation.attributeName === 'data-bs-theme'
-                    ) {
+                for (const mutation of mutationsList) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
                         const new_theme = html.getAttribute('data-bs-theme');
                         this.update_theme(new_theme);
                     }
@@ -81,21 +77,21 @@ var yafowil_ace = (function (exports, $) {
             this.observer.observe(html, { attributes: true });
         }
         update_theme(theme) {
-            const ace_theme = this.themes[theme] || this.themes['light'];
+            const ace_theme = this.themes[theme] || this.themes.light;
             this.editor.setTheme(`ace/theme/${ace_theme}`);
         }
         destroy() {
             if (this.observer) {
                 this.observer.disconnect();
             }
-            let sess = this.editor.getSession();
+            const sess = this.editor.getSession();
             sess.off();
             this.editor.destroy();
             this.editor = null;
             this.ed_elem = null;
         }
     }
-    function ace_on_array_add(inst, context) {
+    function ace_on_array_add(_inst, context) {
         BS5AceWidget.initialize(context);
     }
     function register_array_subscribers() {
@@ -105,7 +101,7 @@ var yafowil_ace = (function (exports, $) {
         window.yafowil_array.on_array_event('on_add', ace_on_array_add);
     }
 
-    $(function() {
+    $(() => {
         if (window.ts !== undefined) {
             ts.ajax.register(BS5AceWidget.initialize, true);
         } else if (window.bdajax !== undefined) {
