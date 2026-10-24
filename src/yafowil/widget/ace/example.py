@@ -28,13 +28,17 @@ def foo():
 
 
 def ace_python():
-    part = factory(u'fieldset', name='yafowil.widget.ace.python')
-    part['ace'] = factory('#field:ace', value=ace_py_value, props={
-        'label': 'Python source',
-        'required': 'Code is required',
-        'theme': 'github',
-        'mode': 'python',
-    })
+    part = factory('fieldset', name='yafowil.widget.ace.python')
+    part['ace'] = factory(
+        '#field:ace',
+        value=ace_py_value,
+        props={
+            'label': 'Python source',
+            'required': 'Code is required',
+            'theme': 'github',
+            'mode': 'python',
+        },
+    )
     return {
         'widget': part,
         'doc': DOC_ACE_PYTHON,
@@ -71,13 +75,17 @@ var foo = function() {
 
 
 def ace_js():
-    part = factory(u'fieldset', name='yafowil.widget.ace.js')
-    part['ace'] = factory('#field:ace', value=ace_js_value, props={
-        'label': 'Javascript Source',
-        'required': 'Code is required',
-        'theme': 'github',
-        'mode': 'javascript',
-    })
+    part = factory('fieldset', name='yafowil.widget.ace.js')
+    part['ace'] = factory(
+        '#field:ace',
+        value=ace_js_value,
+        props={
+            'label': 'Javascript Source',
+            'required': 'Code is required',
+            'theme': 'github',
+            'mode': 'javascript',
+        },
+    )
     return {
         'widget': part,
         'doc': DOC_ACE_JS,
@@ -118,13 +126,17 @@ function foo(items) {
 
 
 def ace_themes():
-    part = factory(u'fieldset', name='yafowil.widget.ace.themes')
-    part['ace'] = factory('#field:ace', value=ace_theme_value, props={
-        'label': 'Solarized Theme',
-        'required': 'Code is required',
-        'theme': 'solarized_light',
-        'mode': 'javascript'
-    })
+    part = factory('fieldset', name='yafowil.widget.ace.themes')
+    part['ace'] = factory(
+        '#field:ace',
+        value=ace_theme_value,
+        props={
+            'label': 'Solarized Theme',
+            'required': 'Code is required',
+            'theme': 'solarized_light',
+            'mode': 'javascript',
+        },
+    )
     return {
         'widget': part,
         'doc': DOC_ACE_THEMES,
@@ -171,14 +183,18 @@ function foo(items) {
 
 
 def ace_darkmode():
-    part = factory(u'fieldset', name='yafowil.widget.ace.darkmode')
-    part['ace'] = factory('#field:ace', value=ace_theme_value, props={
-        'label': 'Light and Dark Theme',
-        'required': 'Code is required',
-        'theme': 'chrome',
-        'dark_theme': 'tomorrow_night',
-        'mode': 'javascript'
-    })
+    part = factory('fieldset', name='yafowil.widget.ace.darkmode')
+    part['ace'] = factory(
+        '#field:ace',
+        value=ace_theme_value,
+        props={
+            'label': 'Light and Dark Theme',
+            'required': 'Code is required',
+            'theme': 'chrome',
+            'dark_theme': 'tomorrow_night',
+            'mode': 'javascript',
+        },
+    )
     return {
         'widget': part,
         'doc': DOC_ACE_DARKMODE,
@@ -215,14 +231,19 @@ The widget's display renderer automatically sets the ``read_only`` attribute to 
 
 
 def ace_display():
-    part = factory(u'fieldset', name='yafowil.widget.ace.display')
-    part['ace'] = factory('#field:ace', value=ace_theme_value, mode='display', props={
-        'label': 'Display Mode',
-        'required': 'Code is required',
-        'theme': 'chrome',
-        'dark_theme': 'tomorrow_night',
-        'mode': 'javascript'
-    })
+    part = factory('fieldset', name='yafowil.widget.ace.display')
+    part['ace'] = factory(
+        '#field:ace',
+        value=ace_theme_value,
+        mode='display',
+        props={
+            'label': 'Display Mode',
+            'required': 'Code is required',
+            'theme': 'chrome',
+            'dark_theme': 'tomorrow_night',
+            'mode': 'javascript',
+        },
+    )
     return {
         'widget': part,
         'doc': DOC_ACE_DISPLAY,

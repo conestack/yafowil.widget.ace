@@ -12,17 +12,18 @@ def np(path):
 
 
 class TestACEWidget(YafowilTestCase):
-
     def setUp(self):
         super(TestACEWidget, self).setUp()
         from yafowil.widget import ace
         from yafowil.widget.ace import widget
+
         reload(widget)
         ace.register()
 
     def test_edit_renderer(self):
         widget = factory('ace', 'acefield', props={'required': True})
-        self.checkOutput("""
+        self.checkOutput(
+            """
         <div class="ace-editor-wrapper"
              data-yafowil-ace="{&quot;basepath&quot;:
                                 &quot;&quot;,
@@ -39,11 +40,14 @@ class TestACEWidget(YafowilTestCase):
                     style="display:none;"/>
           <div class="ace-editor" id="ace-acefield"/>
         </div>
-        """, fxml(widget()))
+        """,
+            fxml(widget()),
+        )
 
     def test_display_renderer(self):
         widget = factory('ace', 'acefield', mode='display', props={'required': True})
-        self.checkOutput("""
+        self.checkOutput(
+            """
         <div class="ace-editor-wrapper"
              data-yafowil-ace="{&quot;basepath&quot;:
                                 &quot;&quot;,
@@ -60,7 +64,9 @@ class TestACEWidget(YafowilTestCase):
                     style="display:none;"/>
           <div class="ace-editor" id="ace-acefield"/>
         </div>
-        """, fxml(widget()))
+        """,
+            fxml(widget()),
+        )
 
     def test_extraction(self):
         widget = factory('ace', 'acefield', props={'required': True})
@@ -69,9 +75,7 @@ class TestACEWidget(YafowilTestCase):
         self.assertEqual(data.name, 'acefield')
         self.assertEqual(data.value, UNSET)
         self.assertEqual(data.extracted, '')
-        self.assertEqual(data.errors, [
-            ExtractionError('Mandatory field was empty')
-        ])
+        self.assertEqual(data.errors, [ExtractionError('Mandatory field was empty')])
 
         request = {'acefield': 'class Foo(object): pass'}
         data = widget.extract(request)
@@ -80,7 +84,8 @@ class TestACEWidget(YafowilTestCase):
         self.assertEqual(data.extracted, 'class Foo(object): pass')
         self.assertEqual(data.errors, [])
 
-        self.checkOutput("""
+        self.checkOutput(
+            """
         <div class="ace-editor-wrapper"
              data-yafowil-ace="{&quot;basepath&quot;:
                                 &quot;&quot;,
@@ -98,7 +103,9 @@ class TestACEWidget(YafowilTestCase):
           <div class="ace-editor"
                id="ace-acefield">class Foo(object): pass</div>
         </div>
-        """, fxml(widget(data)))
+        """,
+            fxml(widget(data)),
+        )
 
     def test_resources(self):
         factory.theme = 'default'

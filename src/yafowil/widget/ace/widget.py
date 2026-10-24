@@ -4,9 +4,9 @@ from yafowil.common import generic_extractor
 from yafowil.common import generic_required_extractor
 from yafowil.utils import as_data_attrs
 from yafowil.utils import attr_value
+from yafowil.utils import cssclasses
 from yafowil.utils import cssid
 from yafowil.utils import managedprops
-from yafowil.utils import cssclasses
 
 
 @managedprops('basepath', 'theme', 'dark_theme', 'mode', 'wrapper_class', 'read_only')
@@ -26,18 +26,20 @@ def ace_edit_renderer(widget, data):
         'class': 'ace-editor',
     }
     editor = data.tag('div', value, **editor_attrs)
-    wrapper_attrs = {
-        'class': cssclasses(widget, data, classattr='wrapper_class')
-    }
-    wrapper_attrs.update(as_data_attrs({
-        'yafowil-ace': {
-            'basepath': attr_value('basepath', widget, data),
-            'theme': attr_value('theme', widget, data),
-            'dark_theme': attr_value('dark_theme', widget, data),
-            'mode': attr_value('mode', widget, data),
-            'read_only': attr_value('read_only', widget, data)
-        }
-    }))
+    wrapper_attrs = {'class': cssclasses(widget, data, classattr='wrapper_class')}
+    wrapper_attrs.update(
+        as_data_attrs(
+            {
+                'yafowil-ace': {
+                    'basepath': attr_value('basepath', widget, data),
+                    'theme': attr_value('theme', widget, data),
+                    'dark_theme': attr_value('dark_theme', widget, data),
+                    'mode': attr_value('mode', widget, data),
+                    'read_only': attr_value('read_only', widget, data),
+                }
+            }
+        )
+    )
     return data.tag('div', ta + editor, **wrapper_attrs)
 
 
@@ -48,12 +50,9 @@ def ace_display_renderer(widget, data):
 
 factory.register(
     'ace',
-    extractors=[
-        generic_extractor,
-        generic_required_extractor
-    ],
+    extractors=[generic_extractor, generic_required_extractor],
     edit_renderers=[ace_edit_renderer],
-    display_renderers=[ace_display_renderer]
+    display_renderers=[ace_display_renderer],
 )
 
 factory.doc['blueprint']['ace'] = """\
